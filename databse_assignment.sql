@@ -20,7 +20,7 @@ WHERE status_id = (
 -- Find all the tasks that are not marked as done. 
 SELECT * 
 FROM task 
-WHERE status_id != (
+WHERE status_id <> (
     SELECT id 
     FROM status
     WHERE name = 'Done') 
