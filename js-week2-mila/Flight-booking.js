@@ -24,19 +24,16 @@ let fullName2 = getFullName("Jeppe", "Thor");
 console.log(fullName1);
 console.log(fullName2);
 
-function useFormalFullName(firstName, surname, useFormalName, gender) {
-    if (useFormalName) {
+function useFormalFullName(firstName, surname, useFormalName = false, gender) {
+    if (!useFormalName) {
+        return `${firstName} ${surname}`;
+    }
         if (gender == "male") {
             return `Lord ${firstName} ${surname}`;
         }
-        else {
+       
            return `Lady ${firstName} ${surname}`; 
-        }
     }
-    else {
-         return `${firstName} ${surname}`;
-    }
-}
  
 console.log(useFormalFullName("Anna", "Karr", true, "female"));
 console.log(useFormalFullName("Anna", "Karr", false, "female"));

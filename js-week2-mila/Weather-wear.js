@@ -21,9 +21,9 @@ function adviceClothesToWear(temperature) {
     else if (temperature < 25) {
         return "It is warm outside, you should wear a sweater and shoes.";
          }     
-    else  {
+    
         return "It is hot outside, you should wear a T-shirt and shorts.";
-        }
+        
 }
 
 const clothesToWear = adviceClothesToWear(temperature);

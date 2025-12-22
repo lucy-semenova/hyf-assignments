@@ -27,17 +27,18 @@ function addStudentToClass(studentName) {
     if (class07Students.length < 6 ) {
         class07Students.push(studentName);
     }
-    else {
+    
         console.log("You cannot add more students to class 07");
-    }
+    
 }
-addStudentToClass(newStudentName)
-console.log(class07Students)
+
+addStudentToClass(newStudentName);
+console.log(class07Students);
 
 
 function getNumberOfStudents() {
-  return class07Students.length
+    return class07Students.length;
 }
 
-console.log(getNumberOfStudents())
+console.log(getNumberOfStudents());
   
