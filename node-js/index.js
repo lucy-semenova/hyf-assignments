@@ -14,11 +14,49 @@ const knexInstance = knex({
   useNullAsDefault: true, 
 });
 
-// Root
+// // Update the / route to return a HTML page that fetches the count value from the /user-count
 app.get("/", (req, res) => {
-  res.send("Hello from exercise 2!");
-});
+  res.send(`
+    <div style="
+      background-color:DodgerBlue;
+      display:flex;
+      flex-direction:column;
+      text-align:center;
+      height:100vh;
+      width:100%;
+    ">
 
+     <h1 style="font-size:3rem">&#127881 Congratulation! &#127881</h1>
+     <h2 style="font-size:2rem">The total number of users is</h2>
+
+      <div
+        id="count"
+        style="
+          margin:auto;
+          width:300px;
+          height:70px;
+          border:solid pink 2px;
+          border-radius:10px;
+          background:white;
+          text-align:center;
+          font-size:2rem;
+          line-height:70px;
+        ">
+     </div>
+      <script>
+        fetch('/user-count')
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('count').innerText = data[0].count;
+          })
+          .catch(error => {
+            console.error(error);
+            document.getElementById('count').innerText = 'Error';
+          });
+      </script>
+</div>
+  `);
+});
 
 
 // all-users sorted by id ascending
@@ -92,6 +130,7 @@ app.get("/first-user", async (req, res) => {
 });
 
 
+
 // user-count should respond with the number of users
 app.get("/user-count", async (req, res) => {
     const rows = await knexInstance.raw(`
@@ -99,32 +138,10 @@ app.get("/user-count", async (req, res) => {
         FROM users;
     `);
 
-res.send(`
-  <div style ="
-    background-color:DodgerBlue;
-    display:flex;
-    flex-direction:column;
-    text-align:center;
-    height:100%;
-    width:100%;
-    ">
-
-    <h1 style = "font-size:2rem">&#127881 Congratulation! &#127881</h1>
-
-    <div style="
-    margin:auto;
-    width:300px;
-    height:70px;
-    border:solid pink 2px;
-    border-radius:10px;
-    background:white;
-    text-align:center;    
-    ">
-    <h2 style = "font-size:1em">The total number of the users is ${rows[0].count} </h2>
-    </div>
-    </div>
-   `);
+  res.json(rows);
 });
+
+
 
 // yahoo-users-count should respond with  with how many users there are  with an @yahoo.com email
 app.get("/yahoo-users-count", async (req, res) => {
