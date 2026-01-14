@@ -1,0 +1,74 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; 
+  padding: 70px;
+}
+
+/*Main content*/
+.content {
+  background-color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+/*Background image*/
+.image {
+  height: 45vh;
+  background-image: url("images/allHouses.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.35;
+  transition: all 0.6s ease;
+}
+
+/*Hide image after sorting*/
+body.sorted .image {
+  height: 0;
+  opacity: 0;
+}
+
+h1, #result {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
+input, button {
+  padding: 15px;
+  margin: 5px;
+  font-size: 16px;
+  border: 2px solid black;
+  border-radius: 8px;
+  
+}
+
+/*Result area*/
+
+#resultContainer {
+   display: flex; 
+   flex-direction: column; 
+   align-items: center; 
+   justify-content: center; 
+   padding:70px; 
+   margin-top: 20px;
+}
+
+#houseImage {
+  width: 220px;
+  margin-top: 20px;
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+#houseDescription {
+  max-width: 500px;
+  margin: 10px auto;
+  font-size: 16px;
+  text-align: center;
+  font-family: Cinzel;
+}
