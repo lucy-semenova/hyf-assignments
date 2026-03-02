@@ -1,5 +1,7 @@
 tomato
 onion
-garlic
+potato
 cucumber
 carrot
+onion
+cauliflower
