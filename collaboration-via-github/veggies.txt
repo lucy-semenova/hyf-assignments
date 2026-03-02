@@ -1,5 +1,7 @@
 tomatoes
 cucumbers
-onions
+garlic
 beetroot
 carrot
+cauliflower
+squash
