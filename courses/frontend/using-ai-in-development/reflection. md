@@ -1,0 +1,67 @@
+Part A: Review and Improve Portfolio
+
+1. List of improvements:
+index.html
+a) Made the title more specific replacing Index with Portfolio
+b) Added button type (type="button")
+c) Added the defer attribute to the script tag
+d) Replaced small letters with capital letters in the list
+e) Added a link to fonts
+
+
+style.css
+a) Rewrote font family names with capitalization
+b) Group related styles and added comments on grouping
+c) Changed Merriweather sans-serif font into serif
+d) Added page spacing by setting body margin and padding
+
+script.js
+a) Named function for event handler
+
+2. Diagram
+
+portfolio/
+│
+├── index.html      -> Main webpage (structure and content)
+├── style.css       -> Styling (layout, typography, responsive design)
+└── script.js       -> JavaScript behavior (background color change)
+
+3. Three learnings from Part A:
+
+ HTML 
+- Buttons should explicitly use type="button" because the default type inside forms is submit, which can cause unintended behavior later.
+
+b) CSS
+
+- Font-family names should use their standard capitalization (e.g., Merriweather, Inter) for clarity and consistency.
+- Choosing the correct fallback font is important; 
+since Merriweather is a serif font, the appropriate fallback is serif, not sans-serif.
+- Page layout should not rely only on browser defaults; 
+explicitly setting spacing (e.g., margin and padding) improves layout control and consistency.
+
+Part B: Ethics and Risks
+
+3 ethical issues and mitigations: 
+
+1. Security vulnerabilities
+Ai-generated code as well human-written code are not flawless and can contain security flaws. 
+There can be errors leading to XXS, SQL or other input-related vulnerabilities.
+If developers rely on AI-generated code without reviewing it carefully, 
+these weaknesses could be introduced into an application and potentially exploited by attackers.
+
+To reduce this risk, I will treat AI-generated code as a code draft that needs always be reviewed and tested. 
+I will check the code for security issues, sanitize user inputs.
+
+2. Confidential code and data
+The data used by AI tend to leak and become available to other ones. It happened if proprietary code, 
+API keys, or customer information are pasted into an AI system.
+
+To prevent this, I will avoid sharing any sensitive or PII with AI tools.
+When asking for help, I will replace real data with dummy data, 
+so no confidential information is exposed while still allowing me to use AI for assistance. 
+
+3. Accuracy and hallucinations
+AI systems tends to sometimes generate incorrect or misleading information. 
+It could be code snippets, explanations, bug fixing, etc. 
+To address this risk, I will verify AI-generated information by checking official documentation, 
+trusted  resources, and testing the code myself. 
