@@ -1,8 +1,10 @@
 const changeBgButton = document.querySelector("button");
 if (changeBgButton) {
-  changeBgButton.addEventListener("click", () => {
-    document.body.style.backgroundColor = getRandomColor();
-  });
+  function handleBackgroundChange() {
+  document.body.style.backgroundColor = getRandomColor();
+}
+
+changeBgButton.addEventListener("click", handleBackgroundChange);
 }
 function getRandomColor() {
   const color =
