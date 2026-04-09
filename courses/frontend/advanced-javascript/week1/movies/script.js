@@ -72,7 +72,7 @@ function getDuplicatedMovies(movies) {
         .split(/\s+/)
         .filter(Boolean);
 
-      let findDuplicates = splitTitles.filter(
+      const findDuplicates = splitTitles.filter(
         (title, index) => splitTitles.indexOf(title) !== index,
       );
       return findDuplicates.length > 0;
