@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movies Database</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Movies Database</h1>
+      <p>Welcome to the movies database!</p>
+      <div class="movies-container" id="moviesContainer">
+
+        <section class="movies-section short-titles">
+          <h2>Short Titles</h2>
+           <div class="movies-section-content" id="shortTitles"></div>
+        </section>
+
+        <section class="movies-section long-titles">
+          <h2>Long Titles</h2>
+           <div class="movies-section-content" id="longTitles"></div>
+        </section>
+
+        <section class="movies-section count-1980s">
+          <h2>1980s Count</h2>
+           <div class="movies-section-content" id="count1980s"></div>
+          
+        </section>
+
+        <section class="movies-section tagged-movies">
+          <h2>Tagged Movies</h2>
+           <div class="movies-section-content" id="taggedMovies"></div>
+        </section>
+
+        <section class="movies-section ratings-above-6">
+          <h2>Ratings Above 6</h2>
+           <div class="movies-section-content" id="ratingsAbove6"></div>
+        </section>
+
+        <section class="movies-section keyword-count">
+          <h2>Keyword Count</h2>
+          <div class="movies-section-content" id="keywordCount"></div>
+        </section>
+
+        <section class="movies-section duplicated-word-titles">
+          <h2>Duplicated Word Titles</h2>
+          <div class="movies-section-content" id="duplicatedWordTitles"></div>
+        </section>
+        
+    
+      <section class="movies-section average-rating">
+          <h2>Average Rating</h2>
+          <div class="movies-section-content" id="averageRating"></div>
+        </section>
+      
+      <section class="movies-section count-tagged-movies">
+          <h2>Count Tagged Movies</h2>
+          <div class="movies-section-content" id="countTaggedMovies"></div>
+        </section>
+      </div>
+    </main>
+
+   
+    <script type="module" src="movies.js" defer></script>
+  </body>
+</html>
