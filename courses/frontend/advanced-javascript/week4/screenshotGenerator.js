@@ -109,3 +109,125 @@ class ApiResponseHandler {
   }
 }
 
+// UI Logic
+
+const input = document.getElementById("input-url");
+const captureButton = document.getElementById("capture-screenshot-btn");
+const output = document.getElementById("output-screenshot");
+const error = document.getElementById("error-message");
+const saveButton = document.getElementById("save-screenshot-btn");
+
+// Store current screenshot
+let currentScreenshot = null;
+
+class Screenshot {
+  constructor(id, url, image, time) {
+    this.id = id;
+    this.url = url;
+    this.image = image;
+    this.time = time;
+  }
+
+  render() {
+    const container = document.getElementById("output-screenshot");
+
+    // clear previous preview (optional)
+    container.innerHTML = "";
+    const card = document.createElement("div");
+    card.className = "screenshot-card";
+
+    const img = document.createElement("img");
+    img.src = this.image;
+    img.alt = `Screenshot of ${this.url}`;
+
+    const urlText = document.createElement("p");
+    urlText.textContent = this.url;
+
+    const timeText = document.createElement("p");
+    timeText.textContent = `Captured at: ${new Date(this.time).toLocaleString()}`;
+
+    const visitButton = document.createElement("button");
+    visitButton.textContent = "Visit";
+    visitButton.addEventListener("click", () => {
+      this.visitSavedUrl();
+    });
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", () => {
+      this.delete();
+      card.remove();
+    });
+
+    card.appendChild(img);
+    card.appendChild(urlText);
+    card.appendChild(timeText);
+    card.appendChild(visitButton);
+    card.appendChild(deleteButton);
+
+    container.appendChild(card);
+  }
+
+  saveScreenshot() {}
+  deleteScreenshot() {}
+  visitSavedUrl() {
+    window.open(this.url, "_blank");
+  }
+}
+
+//Function to capture screenshot and display it
+
+captureButton.addEventListener("click", async () => {
+  error.textContent = "";
+
+  try {
+    const userUrl = UrlValidator.validate(input.value);
+    const apiUrl = `https://${RAPID_API_HOST}/v1/screenshots/image?url=${encodeURIComponent(userUrl)}`;
+
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": RAPID_API_KEY,
+        "X-RapidAPI-Host": RAPID_API_HOST,
+      },
+    });
+
+    console.log("Status:", response.status);
+    console.log("Status text:", response.statusText);
+
+  
+    await ApiResponseHandler.validate(response);
+
+    const screenshotBlob = await response.blob();
+    console.log("Blob:", screenshotBlob);
+
+    const imageUrl = URL.createObjectURL(screenshotBlob);
+    console.log("Image URL:", imageUrl);
+
+    currentScreenshot = new Screenshot(
+      null,
+      userUrl,
+      imageUrl,
+      new Date().toISOString(),
+    );
+    console.log("Current Screenshot:", currentScreenshot);
+
+
+    
+    saveButton.disabled = false;
+
+    currentScreenshot.render();
+  } catch (err) {
+    if (err instanceof ValidationError) {
+      error.textContent = err.toUserMessage();
+    } else if (err instanceof ApiError) {
+      error.textContent = err.toUserMessage();
+    } else if (err instanceof TypeError) {
+      error.textContent = new NetworkError().toUserMessage();
+    } else {
+      error.textContent = "Something went wrong.";
+      console.error(err);
+    }
+  }
+});
+
