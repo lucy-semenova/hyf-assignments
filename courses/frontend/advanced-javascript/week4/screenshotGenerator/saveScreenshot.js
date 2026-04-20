@@ -1,4 +1,5 @@
 import { SaveError } from "./errorHandling.js";
+import { AppError } from "./errorHandling.js";
 import { NetworkError } from "./errorHandling.js";
 import { SaveValidator } from "./validators.js";
 import { Screenshot } from "./screenshot.js";
@@ -35,10 +36,12 @@ export async function saveScreenshot({
     );
     savedScreenshot.renderSavedCard(crudCrudUrl);
   } catch (err) {
-    if (err instanceof SaveError) {
+    if (err instanceof AppError) {
       error.textContent = err.toUserMessage();
     } else if (err instanceof TypeError) {
-      error.textContent = new NetworkError().toUserMessage();
+      error.textContent = new NetworkError(
+        "Network request failed.",
+      ).toUserMessage();
     } else {
       error.textContent = "Could not save screenshot.";
       console.error(err);
@@ -46,7 +49,9 @@ export async function saveScreenshot({
   }
 }
 
+
 export async function loadSavedScreenshots({ error, crudCrudUrl }) {
+  error.textContent = "";
   try {
     const response = await fetch(crudCrudUrl);
 
@@ -68,7 +73,15 @@ export async function loadSavedScreenshots({ error, crudCrudUrl }) {
       screenshot.renderSavedCard(crudCrudUrl);
     });
   } catch (err) {
-    console.error(err);
-    error.textContent = "Could not load saved screenshots.";
+    if (err instanceof AppError) {
+      error.textContent = err.toUserMessage();
+    } else if (err instanceof TypeError) {
+      error.textContent = new NetworkError(
+        "Network request failed.",
+      ).toUserMessage();
+    } else {
+      error.textContent = "Could not load saved screenshots.";
+      console.error(err);
+    }
   }
 }

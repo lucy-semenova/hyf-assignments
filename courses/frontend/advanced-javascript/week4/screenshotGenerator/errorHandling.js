@@ -22,15 +22,27 @@ export class ValidationError extends AppError {
 }
 
 export class SaveError extends AppError {
-  constructor(message) {
-    super(message);
+  constructor(message, code = 500) {
+    super(message, code);
     this.name = "SaveError";
   }
+
   toUserMessage() {
+    if (this.statusCode === 413) {
+      return "Could not save the screenshot. Please try again later.";
+    }
+
+    if (this.statusCode >= 500) {
+      return "Server error. Please try again later.";
+    }
+
+    if (this.statusCode >= 400) {
+      return "Unable to save screenshot. Please try again.";
+    }
+
     return "Unable to save screenshot. Please try again.";
   }
 }
-
 export class ApiError extends AppError {
   constructor(message, code = 500) {
     super(message, code);
