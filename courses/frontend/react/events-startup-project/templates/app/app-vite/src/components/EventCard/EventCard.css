@@ -1,0 +1,26 @@
+.eventCard {
+  list-style: none;
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.eventTitle {
+  margin-bottom: 10px;
+}
+
+.eventDate,
+.eventVenue,
+.eventType,
+.eventPrice,
+.eventTicketsLeft {
+  margin-bottom: 8px;
+}
+
+.buyBtn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}

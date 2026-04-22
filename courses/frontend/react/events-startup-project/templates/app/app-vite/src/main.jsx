@@ -1,5 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import Layout from "./components/Layout/Layout";
+import EventList from "./components/EventList/EventList";
+import EventDetail from "./components/EventDetail/EventDetail";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <Layout>
+    <EventList />
+    <EventDetail />
+  </Layout>
+);
+
+/*
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout/Layout.jsx";
 import HomePage from "./components/HomePage/HomePage.jsx";
@@ -32,3 +46,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </AuthProvider>
   </React.StrictMode>,
 );
+*/

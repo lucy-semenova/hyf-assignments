@@ -4,8 +4,15 @@
 
 export default function EventDetail() {
   return (
-    <div>
-      <p>Event detail — coming soon.</p>
-    </div>
+    <section>
+      <h1>Event Details</h1>
+      <h2>Aarhus AI @ Uber</h2>
+      <p>Date: May 19, 2026</p>
+      <p>Time: 16:00</p>
+      <p>Carl Blochs Gade 89, Aarhus</p>
+      <p>
+        Description: Join local developers and tech enthusiasts for an evening of networking and inspiration.
+      </p>
+    </section>
   );
 }

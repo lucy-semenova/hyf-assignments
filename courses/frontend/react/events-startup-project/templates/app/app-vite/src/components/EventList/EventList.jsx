@@ -1,4 +1,20 @@
-import events from "../../data/events.js";
+import EventCard from "../EventCard/EventCard";
+
+export default function EventList() {
+  return (
+    <section>
+      <h1>Upcoming Events</h1>
+      <ul>
+        <EventCard />
+      </ul>
+    </section>
+  );
+}
+
+
+
+/*import events from "../../data/events.js";
+import EventCard from "../EventCard/EventCard";
 
 // TODO: split each event below into its own EventCard component
 // TODO: add a "Buy ticket" button to each event card
@@ -28,3 +44,4 @@ export default function EventList() {
     </ul>
   );
 }
+*/

@@ -1,3 +1,27 @@
+export default function Layout({ children }) {
+  return (
+    <div>
+      <header>
+        <h1>Event Startup</h1>
+        <nav>
+          <span>Home</span>
+          <span>Events</span>
+          <span>Cart</span>
+          <span>Login</span>
+        </nav>
+      </header>
+
+      <main>{children}</main>
+
+      <footer>
+        <p>© 2026 Event Startup</p>
+      </footer>
+    </div>
+  );
+}
+
+
+/*
 import { Link, Outlet } from "react-router-dom";
 import hyfLogo from "../../assets/hyf.svg";
 import { useAuth } from "../../context/AuthContext.jsx";
@@ -31,8 +55,8 @@ export default function Layout() {
               style={{ padding: "20px" }}
             />
           </a>
-          {/* Navigation links go here — e.g. link to event list, cart, login */}
-          <Link to="/events" className="link">
+          {/* Navigation links go here — e.g. link to event list, cart, login */
+          /*<Link to="/events" className="link">
             Events
           </Link>
 
@@ -52,7 +76,8 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      <footer>{/* Footer content goes here */}</footer>
+      <footer>{/* Footer content goes here */
+      /*</footer >
     </div>
   );
-}
+}*/
