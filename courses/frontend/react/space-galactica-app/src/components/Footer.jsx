@@ -1,8 +1,24 @@
-import { useLocation } from "react-router-dom";
-import styles from "./Footer.module.css";
+
+import { useLocation, Link } from "react-router-dom";
+import styles from './Footer.module.css';
 
 export const Footer = () => {
   const { pathname } = useLocation();
+
+   const pages = [
+     {
+    title: 'ABOUT US',
+    link: '/about_us',
+  },
+  {
+    title: 'DESTINATION',
+    link: '/destination',
+  },
+  {
+    title: 'NASA COLLABORATION',
+    link: '/nasa_collaboration',
+  }
+];
 
   return (
     <footer className={pathname !== "/" ? styles.footer : styles.hidden}>
@@ -17,16 +33,20 @@ export const Footer = () => {
       {/* 🧑🏽‍🚀 Task - Week 2 */}
       {/* Create a new list for the Pages. */}
       {/* We need to use the <Link /> component here. */}
-      {/* <div className={styles.pages}>
+      <div className={styles.pages}>
         <h3>Pages</h3>
         <ul>
-          <li> <Link/> </li>
-          ...
+          <li> <Link to={pages[0].link}>{pages[0].title}</Link> </li>
+          <li> <Link to={pages[1].link}>{pages[1].title}</Link> </li>
+          <li> <Link to={pages[2].link}>{pages[2].title}</Link> </li>
+         
         </ul>
-      </div> */}
-      {/* Docs for the Link: https://reactrouter.com/api/components/Link#link. */}
+      </div> 
 
-      {/* 🧑🏽‍🚀 Task - Week 1 - Done */}
+         
+         
+
+      { /* 🧑🏽‍🚀 Task - Week 1 - Done */}
       {/* Add a new list item for LINKEDIN */}
       <div className={styles.footerLinks}>
         <h3>Follow us</h3>
