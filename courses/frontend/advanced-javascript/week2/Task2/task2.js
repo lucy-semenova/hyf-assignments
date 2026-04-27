@@ -20,7 +20,7 @@ function logAfterDelay(delay, stringToLog, outputId) {
   }, delay * 1000);
 }
 logAfterDelay(3, "Called after 3 seconds", "task2-output");
-logAfterDelay(4, "Called after 4 seconds", "task2-output", "task2-output");
+logAfterDelay(4, "Called after 4 seconds", "task2-output");
 
 // Task3. Create a button in html.
 // When clicking this button,
@@ -63,7 +63,7 @@ planetLogFunction(saturnLogger);
 
 const btnLocation = document.getElementById("btn-location");
 btnLocation.addEventListener("click", function () {
-  let location = document.getElementById("location-output");
+  const location = document.getElementById("location-output");
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else {
@@ -126,11 +126,7 @@ document.addEventListener("click", function (event) {
 // which displays a bad joke on the page.
 
 function jokeCreator(shouldTellFunnyJoke, logFunnyJoke, logBadJoke) {
-  if (shouldTellFunnyJoke) {
-    logFunnyJoke();
-  } else {
-    logBadJoke();
-  }
+  shouldTellFunnyJoke ? logFunnyJoke() : logBadJoke()
 }
 function logFunnyJoke() {
   document.getElementById("joke-output").textContent =
@@ -138,8 +134,8 @@ function logFunnyJoke() {
 }
 function logBadJoke() {
   document.getElementById("joke-output").textContent =
-    "What do you call a fish wearing a bowtie? Sofishticated.";
-}
+    " What's brown and sticky? A stick";
+  }
 
 document.getElementById("btn-funny").addEventListener("click", function () {
   jokeCreator(true, logFunnyJoke, logBadJoke);

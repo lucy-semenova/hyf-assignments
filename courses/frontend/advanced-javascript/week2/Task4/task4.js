@@ -15,10 +15,12 @@ let gameRunning = false;
 let countS = 0;
 let countL = 0;
 
+const pressedKeys = new Set();
+
 startButton.addEventListener("click", function () {
   //stop the previous countdown if any
   clearInterval(intervalId);
-    intervalId = null;
+      intervalId = null;
   hideWinMessage();
   
   //get value from input
@@ -36,6 +38,7 @@ startButton.addEventListener("click", function () {
   scoreL.textContent = 0;
   result.textContent = "";
   gameRunning = true;
+ pressedKeys.clear();
 
   //show the countdown
   countdownOutput.textContent = timeLeft;
@@ -73,15 +76,33 @@ document.addEventListener("keydown", function (event) {
   if (!gameRunning) {
     return;
   }
-  if (event.key === "s" || event.key === "S") {
+  const key = event.key.toLowerCase();
+  
+  if (key !== "s" && key !== "l") {
+    return;
+  }
+
+  if (pressedKeys.has(key)) {
+    return;
+  }
+  pressedKeys.add(key);
+
+  if (key === "s") {
     countS++;
     scoreS.textContent = countS;
   }
-  if (event.key === "l" || event.key === "L") {
+  if (key === "l") {
     countL++;
     scoreL.textContent = countL;
   }
+  });
+
+document.addEventListener("keyup", function (event) {
+  const key = event.key.toLowerCase();
+  pressedKeys.delete(key);
 });
+
+
 
 
 // Show Win Message
@@ -109,11 +130,13 @@ function resetGame() {
 
   countS = 0;
   countL = 0;
+  pressedKeys.clear();
 
   scoreS.textContent = "0";
   scoreL.textContent = "0";
   countdownOutput.textContent = "0";
   result.textContent = "";
+  
 }
 
 playAgainButton.addEventListener("click", function () {

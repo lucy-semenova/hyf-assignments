@@ -24,11 +24,22 @@ console.log(functions[2](10, 5)); // Output: 2
 
 //Create a function as a const and try creating a function normally.
 // Call both functions.
-
+// Function expression (assigned to const)
 const sumFunction = function sum(a, b) {
   return a + b;
 };
 console.log(sumFunction(10, 5)); // Output: 15
+
+// Function declaration (normal function)
+function sum(a, b) {
+  return a + b;
+}
+
+console.log(sum(10, 5)); // 15
+
+//Function declarations are hoisted and can be used before their definition, 
+// while function expressions (with const or let) 
+// can only be used after they are defined.
 
 // Create an object that has a key whose value is a function.
 // Try calling this function.
