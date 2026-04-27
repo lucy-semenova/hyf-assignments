@@ -7,17 +7,32 @@ import PlanetsWishlistItem from "./PlanetsWishlistItem";
 export const Destinations = () => {
   const [planetsWishlist, setPlanetsWishlist] = useState([]);
 
+
+  // 🧑🏽‍🚀 Task - Week 2 -Done
+  // This should be a simple function to check if a given planet is selected.
+  // You will need to work with the array of planets wishlist.
   const isPlanetInWishlist = (planetName) => {
-    // 🧑🏽‍🚀 Task - Week 2
-    // This should be a simple function to check if a given planet is selected.
-    // You will need to work with the array of planets wishlist.
+    for (let i = 0; i < planetsWishlist.length; i++) {
+      if (planetsWishlist[i].name === planetName) {
+        return true;
+      }
+    }
+    return false;
   };
 
+    
+  // 🧑🏽‍🚀 Task - Week 2-done
+  // When a planet is selected or deselected (toggled), the state of the wishlist planets should be updated accordingly by 
+  // calling the addPlanetToWishlist or removePlanetFromWishlist function. You will need a condition here.
+  
   const togglePlanetSelection = (name, thumbnail) => {
-    // 🧑🏽‍🚀 Task - Week 2
-    // When a planet is selected or deselected (toggled), the state of the wishlist planets should be updated accordingly by
-    // calling the addPlanetToWishlist or removePlanetFromWishlist function. You will need a condition here.
-  };
+    if (isPlanetInWishlist(name)) {
+      removePlanetFromWishlist(name);
+    } else {
+      addPlanetToWishlist(name, thumbnail);
+    }
+      
+};
 
   const addPlanetToWishlist = (name, thumbnail) => {
     // 🧑🏽‍🚀 Task - Week 2
