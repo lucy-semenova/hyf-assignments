@@ -2,23 +2,44 @@ import { useState } from "react";
 import styles from "./DestinationPage.module.css";
 import PlanetsWishlistItem from "./PlanetsWishlistItem";
 
+ // 🧑🏽‍🚀 Task - Week 2 - Done
+          //Add all 4 planets: Europa, Moon, Mars, Titan.  
+// Use the README.md file for descriptions. 
+const planets = [
+  {
+    name: "Europa",
+    description: "Europa, one of Jupiter’s moons, is an icy world with a hidden ocean beneath its surface. This mysterious moon is a prime candidate for the search for extraterrestrial life, making it a thrilling destination for space explorers.",
+    thumbnail: "/destination/image-europa.png"
+  },
+  {
+    name: "Mars",
+    description: "Mars, the Red Planet, is a barren yet fascinating world with vast deserts, towering volcanoes, and the deepest canyon in the solar system. As humanity’s next frontier, Mars invites us to dream of colonization and the possibilities of life beyond Earth.",
+    thumbnail: "/destination/image-mars.png"
+  },
+  {
+    name: "Moon",
+    description: "Our closest celestial neighbor, the Moon, is a silent witness to Earth's history. With its stunning craters and desolate landscapes, the Moon offers a unique glimpse into space exploration's past and future, making it a perfect destination for lunar adventurers.",
+    thumbnail: "/destination/image-moon.png"
+  },
+  {
+    name: "Titan",
+    description: "Titan, Saturn's largest moon, is a world of dense atmosphere and liquid methane lakes. This enigmatic moon is shrouded in a thick orange haze, concealing a landscape that is both alien and strangely familiar, beckoning explorers to uncover its secrets.",
+    thumbnail: "/destination/image-titan.png"
+  }
+];
 
 
-export const Destinations = () => {
+
+ const Destinations = () => {
   const [planetsWishlist, setPlanetsWishlist] = useState([]);
-
 
   // 🧑🏽‍🚀 Task - Week 2 -Done
   // This should be a simple function to check if a given planet is selected.
   // You will need to work with the array of planets wishlist.
-  const isPlanetInWishlist = (planetName) => {
-    for (let i = 0; i < planetsWishlist.length; i++) {
-      if (planetsWishlist[i].name === planetName) {
-        return true;
-      }
-    }
-    return false;
-  };
+   const isPlanetInWishlist = (planetName) => {
+     return planetsWishlist.some((planet) => planet.name === planetName);
+   };
+    
 
     
   // 🧑🏽‍🚀 Task - Week 2-Done
@@ -51,10 +72,10 @@ export const Destinations = () => {
   };
 
 
-  {/* 🧑🏽‍🚀 Task - Week 2 - Done*/}
-          {/* Display the number of wishlist planets, if there are any planets in the wishlist. */}
-  {/* Display the "no planets" message if the wishlist is empty. */ }
-  {/* 🧑🏽‍🚀 Use a variable to display the number of wishlist planets:  */}
+//  🧑🏽‍🚀 Task - Week 2 - Done*/}
+//     Display the number of wishlist planets, if there are any planets in the wishlist. */}
+//   Display the "no planets" message if the wishlist is empty. */ }
+//    🧑🏽‍🚀 Use a variable to display the number of wishlist planets:  */}
   const numberOfPlanetsInWishlist = planetsWishlist.length;
   
   function renderWishlistMessage() {
@@ -92,9 +113,7 @@ export const Destinations = () => {
         </section>
         <section className="card">
           <h2>Possible destinations</h2>
-          {/* 🧑🏽‍🚀 Task - Week 2 */}
-          {/* Add all 4 planets: Europa, Moon, Mars, Titan.  */}
-          {/* Use the README.md file for descriptions. */}
+         
           {/* Create a <PlanetCard /> component, which accepts the following props: name, description, thumbnail, isSelected, togglePlanetSelection */}
           <div className={styles.planetCard}>
             <img
