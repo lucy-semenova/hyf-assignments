@@ -17,8 +17,9 @@ export const Destinations = () => {
     return false;
   };
 
-  // 🧑🏽‍🚀 Task - Week 2-done
-  // When a planet is selected or deselected (toggled), the state of the wishlist planets should be updated accordingly by
+    
+  // 🧑🏽‍🚀 Task - Week 2-Done
+  // When a planet is selected or deselected (toggled), the state of the wishlist planets should be updated accordingly by 
   // calling the addPlanetToWishlist or removePlanetFromWishlist function. You will need a condition here.
 
   const togglePlanetSelection = (name, thumbnail) => {
@@ -27,16 +28,43 @@ export const Destinations = () => {
     } else {
       addPlanetToWishlist(name, thumbnail);
     }
+      
+};
+ // 🧑🏽‍🚀 Task - Week 2-Done
+    // Add the planet to the planets wishlist state.
+  
+  const addPlanetToWishlist = (name, thumbnail) => {
+    setPlanetsWishlist([...planetsWishlist, { name: name, thumbnail: thumbnail }]);
+  };
+  
+// 🧑🏽‍🚀 Task - Week 2-Done
+    // Remove the planet from the planets wishlist state.
+  const removePlanetFromWishlist = (name) => {
+ const updatedList = planetsWishlist.filter(
+    (planet) => planet.name !== name
+  );
+
+  setPlanetsWishlist(updatedList);    
   };
 
-  const addPlanetToWishlist = (name, thumbnail) => {
-    // 🧑🏽‍🚀 Task - Week 2
-    // Add the planet to the planets wishlist state.
-  };
-  const removePlanetFromWishlist = (name) => {
-    // 🧑🏽‍🚀 Task - Week 2
-    // Remove the planet from the planets wishlist state.
-  };
+
+  {/* 🧑🏽‍🚀 Task - Week 2 - Done*/}
+          {/* Display the number of wishlist planets, if there are any planets in the wishlist. */}
+  {/* Display the "no planets" message if the wishlist is empty. */ }
+  {/* 🧑🏽‍🚀 Use a variable to display the number of wishlist planets:  */}
+  const numberOfPlanetsInWishlist = planetsWishlist.length;
+  
+  function renderWishlistMessage() {
+  if (numberOfPlanetsInWishlist === 0) {
+    return <p>No planets in your wishlist :(</p>;
+  } else {
+    return (
+      <p>
+        You have {numberOfPlanetsInWishlist} planets in your wishlist
+      </p>
+    );
+  }
+}
 
   return (
     <div className="fullBGpicture">
@@ -44,12 +72,9 @@ export const Destinations = () => {
         <h1>Travel destinations</h1>
         <section className="card">
           <h2>Wishlist</h2>
-          {/* 🧑🏽‍🚀 Task - Week 2 */}
-          {/* Display the number of wishlist planets, if there are any planets in the wishlist. */}
-          {/* Display the "no planets" message if the wishlist is empty. */}
-          <p>No planets in your wishlist :(</p>
-          {/* 🧑🏽‍🚀 Use a variable to display the number of wishlist planets:  */}
-          <p>You have X planets in your wishlist</p>
+          
+          { renderWishlistMessage()}
+          
 
           {/* 🧑🏽‍🚀 Task - Week 3 */}
           {/* Use the AddWishlistItem component here. */}
