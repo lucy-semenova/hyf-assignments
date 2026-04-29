@@ -3,7 +3,7 @@
 const events = [
   {
     id: 1,
-    name: "React Copenhagen Conference 2026",
+    title: "React Copenhagen Conference 2026",
     date: "2026-04-15",
     time: "09:00",
     venue: "Copenhagen Concert Hall",
@@ -17,7 +17,7 @@ const events = [
   },
   {
     id: 2,
-    name: "Hackathon: Build with AI",
+    title: "Hackathon: Build with AI",
     date: "2026-04-25",
     time: "09:00",
     venue: "BLOX",
@@ -31,7 +31,7 @@ const events = [
   },
   {
     id: 3,
-    name: "JavaScript: Modern Patterns Workshop",
+    title: "JavaScript: Modern Patterns Workshop",
     date: "2026-05-03",
     time: "10:00",
     venue: "Founders House",
