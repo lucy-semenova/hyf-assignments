@@ -1,6 +1,6 @@
 import { useState } from "react";
+import PlanetCard from "../../components/PlanetCard/PlanetCard";
 import styles from "./DestinationPage.module.css";
-import PlanetsWishlistItem from "./PlanetsWishlistItem";
 
 // 🧑🏽‍🚀 Task - Week 2 - Done
 //Add all 4 planets: Europa, Moon, Mars, Titan.
@@ -43,17 +43,6 @@ const Destinations = () => {
   };
 
   // 🧑🏽‍🚀 Task - Week 2-Done
-  // When a planet is selected or deselected (toggled), the state of the wishlist planets should be updated accordingly by
-  // calling the addPlanetToWishlist or removePlanetFromWishlist function. You will need a condition here.
-
-  const togglePlanetSelection = (name, thumbnail) => {
-    if (isPlanetInWishlist(name)) {
-      removePlanetFromWishlist(name);
-    } else {
-      addPlanetToWishlist(name, thumbnail);
-    }
-  };
-  // 🧑🏽‍🚀 Task - Week 2-Done
   // Add the planet to the planets wishlist state.
 
   const addPlanetToWishlist = (name, thumbnail) => {
@@ -69,8 +58,18 @@ const Destinations = () => {
     const updatedList = planetsWishlist.filter(
       (planet) => planet.name !== name,
     );
-
     setPlanetsWishlist(updatedList);
+  };
+  // 🧑🏽‍🚀 Task - Week 2-Done
+  // When a planet is selected or deselected (toggled), the state of the wishlist planets should be updated accordingly by
+  // calling the addPlanetToWishlist or removePlanetFromWishlist function. You will need a condition here.
+
+  const togglePlanetSelection = (name, thumbnail) => {
+    if (isPlanetInWishlist(name)) {
+      removePlanetFromWishlist(name);
+    } else {
+      addPlanetToWishlist(name, thumbnail);
+    }
   };
 
   //  🧑🏽‍🚀 Task - Week 2 - Done*/}
@@ -111,45 +110,43 @@ const Destinations = () => {
         </section>
         <section className="card">
           <h2>Possible destinations</h2>
-
-          {/* Create a <PlanetCard /> component, which accepts the following props: name, description, thumbnail, isSelected, togglePlanetSelection */}
-          <div className={styles.planetCard}>
-            <img
-              className={styles.planetThumbnail}
-              src="/destination/image-europa.png"
-              alt=""
+          <div className={styles.planetCardGrid}>
+            <PlanetCard
+              name={planets[0].name}
+              description={planets[0].description}
+              thumbnail={planets[0].thumbnail}
+              isSelected={isPlanetInWishlist(planets[0].name)}
+              togglePlanetSelection={() =>
+                togglePlanetSelection(planets[0].name, planets[0].thumbnail)
+              }
             />
-            <div className={styles.planetDescription}>
-              <h2>EUROPA {isPlanetInWishlist("Europa") ? "- SELECTED" : ""}</h2>
-              <p>Lorem ipsum...</p>
-            </div>
-            <button
-              className="roundButton"
-              onClick={() => togglePlanetSelection("Europa")}
-            >
-              {isPlanetInWishlist("Europa")
-                ? "REMOVE FROM WISHLIST"
-                : "ADD TO WISHLIST"}
-            </button>
-          </div>
-          <div className={styles.planetCard}>
-            <img
-              className={styles.planetThumbnail}
-              src="/destination/image-mars.png"
-              alt=""
+            <PlanetCard
+              name={planets[1].name}
+              description={planets[1].description}
+              thumbnail={planets[1].thumbnail}
+              isSelected={isPlanetInWishlist(planets[1].name)}
+              togglePlanetSelection={() =>
+                togglePlanetSelection(planets[1].name, planets[1].thumbnail)
+              }
             />
-            <div className={styles.planetDescription}>
-              <h2>MARS {isPlanetInWishlist("Mars") ? "- SELECTED" : ""}</h2>
-              <p>Lorem ipsum...</p>
-            </div>
-            <button
-              className="roundButton"
-              onClick={() => togglePlanetSelection("Mars")}
-            >
-              {isPlanetInWishlist("Mars")
-                ? "REMOVE FROM WISHLIST"
-                : "ADD TO WISHLIST"}
-            </button>
+            <PlanetCard
+              name={planets[2].name}
+              description={planets[2].description}
+              thumbnail={planets[2].thumbnail}
+              isSelected={isPlanetInWishlist(planets[2].name)}
+              togglePlanetSelection={() =>
+                togglePlanetSelection(planets[2].name, planets[2].thumbnail)
+              }
+            />
+            <PlanetCard
+              name={planets[3].name}
+              description={planets[3].description}
+              thumbnail={planets[3].thumbnail}
+              isSelected={isPlanetInWishlist(planets[3].name)}
+              togglePlanetSelection={() =>
+                togglePlanetSelection(planets[3].name, planets[3].thumbnail)
+              }
+            />
           </div>
         </section>
       </main>
