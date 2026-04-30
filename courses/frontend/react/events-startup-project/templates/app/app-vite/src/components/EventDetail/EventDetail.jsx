@@ -5,7 +5,7 @@ import events from "../../data/events";
 import "./EventDetail.css";
 
 export default function EventDetail() {
-const event = events[0];
+const event = events[2];
   const [quantity, setQuantity] = useState(1);
     
  const getPriceMessage = () => {
@@ -45,13 +45,9 @@ const handleQuantityChange = (e) => {
 
       <p>Date: {event.date}</p>
       <p>Time: {event.time}</p>
-      <p>
-        {event.venue}, {event.city}
-      </p>
-
-      <p>{event.description}</p>
-
- <p>Price: {getPriceMessage()}</p>
+      <p>Venue: {event.venue}, {event.city}</p>
+      <p>Description: {event.description}</p>
+      <p>Price: {getPriceMessage()}</p>
       <p>Availability: {getAvailabilityMessage()}</p>
 
       {event.ticketsAvailable === 0 ? (
