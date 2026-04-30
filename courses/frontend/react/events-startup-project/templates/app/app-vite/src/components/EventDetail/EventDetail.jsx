@@ -1,18 +1,77 @@
-// TODO: display at least date, time, venue, city, and description for one event
 // TODO: use useParams() to get the event id from the URL
 // TODO: fetch the event from GET /events/:id instead of using mock data
+import { useState } from "react";
+import events from "../../data/events";
 import "./EventDetail.css";
+
 export default function EventDetail() {
+const event = events[0];
+  const [quantity, setQuantity] = useState(1);
+    
+ const getPriceMessage = () => {
+  return event.price === 0
+     ? "Free" :`${event.price} DKK`;
+  };
+
+   const getAvailabilityMessage = () => {
+     return event.ticketsAvailable === 0
+       ? "Sold out"
+       : `${event.ticketsAvailable} tickets left`;
+  };
+
+  const getTotalPriceMessage = () => {
+    if (event.price === 0) {
+      return "Free";
+    }
+    return `${quantity * event.price} DKK`;
+  };
+
+const handleQuantityChange = (e) => {
+    const value = Number(e.target.value);
+    if (value < 1) {
+      setQuantity(1);
+    } else if (value > event.ticketsAvailable) {
+      setQuantity(event.ticketsAvailable);
+    } else {
+      setQuantity(value);
+    }
+  };
+
   return (
-    <section>
+<section>
       <h1>Event Details</h1>
-      <h2>Aarhus AI @ Uber</h2>
-      <p>Date: May 19, 2026</p>
-      <p>Time: 16:00</p>
-      <p>Carl Blochs Gade 89, Aarhus</p>
+
+      <h2>{event.title}</h2>
+
+      <p>Date: {event.date}</p>
+      <p>Time: {event.time}</p>
       <p>
-        Description: Join local developers and tech enthusiasts for an evening of networking and inspiration.
+        {event.venue}, {event.city}
       </p>
+
+      <p>{event.description}</p>
+
+ <p>Price: {getPriceMessage()}</p>
+      <p>Availability: {getAvailabilityMessage()}</p>
+
+      {event.ticketsAvailable === 0 ? (
+        <p>This event is sold out</p>
+      ) : (
+        <>
+          <label htmlFor="ticketQuantity">Ticket Quantity:</label>
+
+          <input
+            type="number"
+            id="ticketQuantity"
+            min="1"
+            max={event.ticketsAvailable}
+            value={quantity}
+            onChange={handleQuantityChange}
+          />
+
+          <p>Total price: {getTotalPriceMessage()}</p>
+        </>
+      )}
     </section>
   );
 }
