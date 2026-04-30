@@ -10,6 +10,20 @@ function EventCard({
   ticketsAvailable,
   category,
 }) {
+  const getAvailabilityMessage = () => {
+    ticketsAvailable === 0
+      ? "Sold out"
+      : ticketsAvailable < 10
+        ? `${ticketsAvailable} tickets left`
+        : "";
+  };
+
+  const getPriceMessage = () => {
+    price === 0
+      ? "Free"
+      : `${price} DKK`;
+  };
+
   return (
     <li className="eventCard">
       <h2 className="eventTitle">{title}</h2>
@@ -20,12 +34,10 @@ function EventCard({
         {venue}, {city}
       </p>
       <p className="eventType">{category}</p>
-      <p className="eventPrice">{price === 0 ? "Free" : `${price} DKK`}</p>
+      <p className="eventPrice">{getPriceMessage()}</p>
 
       <p className="eventTicketsLeft">
-        {ticketsAvailable > 0
-          ? `${ticketsAvailable} tickets left`
-          : "Sold out"}
+        {getAvailabilityMessage()}
       </p>
       <button className="buyTicketButton" disabled={ticketsAvailable === 0}>
         {ticketsAvailable === 0 ? "Sold out" : "Buy ticket"}
@@ -33,4 +45,4 @@ function EventCard({
     </li>
      );
 }       
-export default EventCard;  
+export default EventCard; 
