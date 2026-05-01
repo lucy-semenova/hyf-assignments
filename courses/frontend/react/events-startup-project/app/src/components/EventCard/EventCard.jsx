@@ -11,11 +11,11 @@ function EventCard({
   category,
 }) {
   const getAvailabilityMessage = () => {
-    ticketsAvailable === 0 ? "Sold out" : `${ticketsAvailable} tickets left`;
+    return ticketsAvailable === 0 ? "Sold out" : `${ticketsAvailable} tickets left`;
   };
 
   const getPriceMessage = () => {
-    price === 0 ? "Free" : `${price} DKK`;
+    return price === 0 ? "Free" : `${price} DKK`;
   };
 
   return (

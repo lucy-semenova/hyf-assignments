@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Layout from "./components/Layout/Layout";
-import EventList from "./components/EventList/EventList";
+import EventSection from "./components/EventSection/EventSection";
 import EventDetail from "./components/EventDetail/EventDetail";
+
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Layout>
-    <EventList />
+     <EventSection />
     <EventDetail />
   </Layout>
 );
