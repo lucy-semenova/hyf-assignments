@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PlanetCard from "../../components/PlanetCard/PlanetCard";  
 import styles from "./DestinationPage.module.css";
+import { AddWishlistItem } from "./AddWishlistItem";
 
 const planets = [
   {
@@ -80,6 +81,7 @@ const planets = [
 
           {/* 🧑🏽‍🚀 Task - Week 3 */}
           {/* Use the AddWishlistItem component here. */}
+          <AddWishlistItem onAddWishlistItem={addPlanetToWishlist} />
 
           {/* 🧑🏽‍🚀 Task - Week 3
           <h3>Your current wishlist</h3>

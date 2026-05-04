@@ -16,11 +16,7 @@ export const AddWishlistItem = ({ onAddWishlistItem }) => {
     if (wishlistItemName.trim() === "") {
       return;
     }
-    onAddWishlistItem({
-      name: wishlistItemName,
-      thumbnail: thumbnail,
-    });
-
+    onAddWishlistItem(wishlistItemName, thumbnail);
     setWishlistItemName("");
   };
 
