@@ -50,31 +50,22 @@ export const Navbar = () => {
         <div className={styles.navbarBG} />
 
         <ul className={styles.navbarList}>
-         
-          <NavItem
-            title={navbarItems[0].title}
-            link={navbarItems[0].link}
-            isActive={navbarItems[0].link === currentPath}
-            number="01"
-          />
-
-          <NavItem
-            title={navbarItems[1].title}
-            link={navbarItems[1].link}
-            isActive={navbarItems[1].link === currentPath}
-            number="02"
-          />
-
-          <NavItem
-            title={navbarItems[2].title}
-            link={navbarItems[2].link}
-            isActive={navbarItems[2].link === currentPath}
-            number="03"
-          />
-
           {/* 🧑🏽‍🚀 Task - Week 3 */}
           {/* Replace repeating content by using .map() and the previously created NavItem component. */}
-          <li className={styles.wishlistBadge} aria-label="Wishlist"></li>
+          {navbarItems.map((item, index) => (
+            <NavItem
+              key={item.link}
+              title={item.title}
+              link={item.link}
+              isActive={item.link === currentPath}
+              number={`0${index+1}`}
+            />
+          ))}
+          
+        
+                
+          <li className={styles.wishlistBadge} aria-label="Wishlist">
+          </li>
         </ul>
         {/* 🧑🏽‍🚀 Task - Week 4 - part 3 */}
         {/* Take the count of the planets wishlist from the context and display it in the Badge. */}
