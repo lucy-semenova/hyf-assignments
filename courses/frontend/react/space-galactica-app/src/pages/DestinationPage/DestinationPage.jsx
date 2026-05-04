@@ -2,10 +2,6 @@ import { useState } from "react";
 import PlanetCard from "../../components/PlanetCard/PlanetCard";  
 import styles from "./DestinationPage.module.css";
 
-
- // 🧑🏽‍🚀 Task - Week 2 - Done
-          //Add all 4 planets: Europa, Moon, Mars, Titan.  
-// Use the README.md file for descriptions. 
 const planets = [
   {
     name: "Europa",
@@ -29,37 +25,25 @@ const planets = [
   }
 ];
 
-
-
  const Destinations = () => {
   const [planetsWishlist, setPlanetsWishlist] = useState([]);
 
-  // 🧑🏽‍🚀 Task - Week 2 -Done
-  // This should be a simple function to check if a given planet is selected.
-  // You will need to work with the array of planets wishlist.
    const isPlanetInWishlist = (planetName) => {
      return planetsWishlist.some((planet) => planet.name === planetName);
    };
-    
-// 🧑🏽‍🚀 Task - Week 2-Done
-    // Add the planet to the planets wishlist state.
+ 
   
   const addPlanetToWishlist = (name, thumbnail) => {
     setPlanetsWishlist([...planetsWishlist, { name: name, thumbnail: thumbnail }]);
   };
   
-// 🧑🏽‍🚀 Task - Week 2-Done
-    // Remove the planet from the planets wishlist state.
   const removePlanetFromWishlist = (name) => {
  const updatedList = planetsWishlist.filter(
     (planet) => planet.name !== name
   );
     setPlanetsWishlist(updatedList);    
   };
-  // 🧑🏽‍🚀 Task - Week 2-Done
-  // When a planet is selected or deselected (toggled), the state of the wishlist planets should be updated accordingly by 
-  // calling the addPlanetToWishlist or removePlanetFromWishlist function. You will need a condition here.
-  
+    
   const togglePlanetSelection = (name, thumbnail) => {
     if (isPlanetInWishlist(name)) {
       removePlanetFromWishlist(name);
@@ -70,13 +54,6 @@ const planets = [
 };
  
 
-  
-
-
-//  🧑🏽‍🚀 Task - Week 2 - Done*/}
-//     Display the number of wishlist planets, if there are any planets in the wishlist. */}
-//   Display the "no planets" message if the wishlist is empty. */ }
-//    🧑🏽‍🚀 Use a variable to display the number of wishlist planets:  */}
   const numberOfPlanetsInWishlist = planetsWishlist.length;
   
   function renderWishlistMessage() {
