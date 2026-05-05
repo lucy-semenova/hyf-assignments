@@ -2,6 +2,7 @@ import { useState } from "react";
 import PlanetCard from "../../components/PlanetCard/PlanetCard";  
 import styles from "./DestinationPage.module.css";
 import { AddWishlistItem } from "./AddWishlistItem";
+import PlanetsWishlistItem from "./PlanetsWishlistItem";
 
 const planets = [
   {
@@ -90,6 +91,17 @@ const planets = [
             Use .map() to display the wishlist planets with the PlanetsWishlistItem component. 
           </div> 
           */}
+
+          <h3>Your current wishlist</h3>
+          <div className={styles.wishlistList}>
+            {planetsWishlist.map((item) => 
+              <PlanetsWishlistItem
+                key={ item.name}
+           name={item.name}
+              thumbnail={item.thumbnail}
+              />
+            )}
+          </div> 
         </section>
         <section className="card">
          
