@@ -16,7 +16,7 @@ const PlanetCard = ({
         </h2>
         <p>{description}</p>
       </div>
-      <button className={styles.roundButton} onClick={togglePlanetSelection}>
+      <button onClick={togglePlanetSelection}>
         {isSelected ? "Deselect" : "Select"}
       </button>
     </div>
