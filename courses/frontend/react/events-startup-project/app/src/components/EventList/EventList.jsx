@@ -1,10 +1,12 @@
 import EventCard from "../EventCard/EventCard";
+import EventSearch from "../EventSearch/EventSearch";
 import { useEffect, useState } from "react";
 
 function EventList() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
   async function fetchEvents() {
@@ -12,7 +14,7 @@ function EventList() {
       setLoading(true);
       setError("");
 
-      const response = await fetch("http://localhost:3001/api/events");
+      const response = await fetch(`http://localhost:3001/api/events?q=${searchTerm}`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch events");
@@ -26,11 +28,14 @@ function EventList() {
       setLoading(false);
     }
   }
+  const timeoutId = setTimeout(() => {
+    fetchEvents();
+  }, 300);
 
-  fetchEvents();
-  }, []);
+  return () => clearTimeout(timeoutId);
+  }, [searchTerm]);
   
-
+  
   if (loading) {
     return <p>Loading events...</p>;
   }
@@ -43,7 +48,10 @@ function EventList() {
     <section>
       <h1>Upcoming Events</h1>
 
-  
+      <EventSearch
+  searchQuery={searchTerm}
+  setSearchQuery={setSearchTerm}
+/>
       {events.length === 0 ? (
         <p className="noEvents">No events available.</p>
       ) : (

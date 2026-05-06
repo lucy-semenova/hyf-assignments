@@ -1,6 +1,5 @@
 import { useState } from "react";
 import events from "../../data/events.js";
-import EventSearch from "../EventSearch/EventSearch.jsx";
 import EventList from "../EventList/EventList.jsx";
 
 function EventSection() {
@@ -12,10 +11,7 @@ function EventSection() {
 
   return (
     <section>
-      <EventSearch
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
+      
 
       <EventList filteredEvents={filteredEvents} />
     </section>

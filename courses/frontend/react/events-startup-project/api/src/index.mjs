@@ -131,10 +131,10 @@ apiRouter.get("/", (req, res) => {
 
 apiRouter.get("/events", (req, res) => {
 const searchText = req.query.q;
- if (!searchText) {
-    res.json(events);
-    return;
-  }
+if (!searchText || searchText.length < 2) {
+  res.json(events);
+  return;
+}
   const filteredEvents = events.filter((event) => {
     const eventTitle = event.title.toLowerCase();
     const searchTextLowerCase = searchText.toLowerCase();
