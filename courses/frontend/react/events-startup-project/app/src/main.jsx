@@ -2,14 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Layout from "./components/Layout/Layout";
 import EventSection from "./components/EventSection/EventSection";
-import EventDetail from "./components/EventDetail/EventDetail";
 
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Layout>
      <EventSection />
-    <EventDetail />
+  
   </Layout>
 );
 

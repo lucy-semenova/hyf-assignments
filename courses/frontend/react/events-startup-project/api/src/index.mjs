@@ -130,21 +130,34 @@ apiRouter.get("/", (req, res) => {
 });
 
 apiRouter.get("/events", (req, res) => {
-const searchText = req.query.q;
-if (!searchText || searchText.length < 2) {
-  res.json(events);
-  return;
-}
-  const filteredEvents = events.filter((event) => {
-    const eventTitle = event.title.toLowerCase();
-    const searchTextLowerCase = searchText.toLowerCase();
+  const searchText = req.query.q;
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 4;
 
-    return eventTitle.includes(searchTextLowerCase);
+  let filteredEvents = events;
+
+  if (searchText && searchText.length >= 2) {
+    filteredEvents = events.filter((event) => {
+      const eventTitle = event.title.toLowerCase();
+      const searchTextLowerCase = searchText.toLowerCase();
+
+      return eventTitle.includes(searchTextLowerCase);
+    });
+  }
+
+  const startIndex = (page - 1) * limit;
+  const endIndex = startIndex + limit;
+
+  const paginatedEvents = filteredEvents.slice(startIndex, endIndex);
+
+  res.json({
+    events: paginatedEvents,
+    totalEvents: filteredEvents.length,
+    currentPage: page,
+    totalPages: Math.ceil(filteredEvents.length / limit),
   });
-
-  res.json(filteredEvents);
 });
-
+ 
 
 app.use("/api", apiRouter);
 app.listen(process.env.PORT, () => {
