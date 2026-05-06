@@ -2,15 +2,12 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-// import knex from "./database_client.js";
-// import nestedRouter from "./routers/nested.js";
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
 const apiRouter = express.Router();
-
 
 const events = [
   {
@@ -35,7 +32,6 @@ const events = [
     price: 50,
     ticketsAvailable: 0,
   },
-
   {
     id: 3,
     title: "JavaScript Deep Dive",
@@ -125,6 +121,7 @@ const events = [
     ticketsAvailable: 15,
   },
 ];
+
 apiRouter.get("/", (req, res) => {
   res.json({ message: "API is working" });
 });
@@ -157,9 +154,22 @@ apiRouter.get("/events", (req, res) => {
     totalPages: Math.ceil(filteredEvents.length / limit),
   });
 });
- 
+
+apiRouter.get("/events/:id", (req, res) => {
+  const eventId = Number(req.params.id);
+
+  const event = events.find((event) => event.id === eventId);
+
+  if (!event) {
+    res.status(404).json({ error: "Event not found" });
+    return;
+  }
+
+  res.json(event);
+});
 
 app.use("/api", apiRouter);
+
 app.listen(process.env.PORT, () => {
   console.log(`API listening on port ${process.env.PORT}`);
 });
