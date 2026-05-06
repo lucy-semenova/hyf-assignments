@@ -130,7 +130,19 @@ apiRouter.get("/", (req, res) => {
 });
 
 apiRouter.get("/events", (req, res) => {
-  res.json(events);
+const searchText = req.query.q;
+ if (!searchText) {
+    res.json(events);
+    return;
+  }
+  const filteredEvents = events.filter((event) => {
+    const eventTitle = event.title.toLowerCase();
+    const searchTextLowerCase = searchText.toLowerCase();
+
+    return eventTitle.includes(searchTextLowerCase);
+  });
+
+  res.json(filteredEvents);
 });
 
 
