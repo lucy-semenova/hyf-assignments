@@ -1,5 +1,9 @@
 import "./Layout.css";
+import { useAuth } from "../../context/AuthContext";
+
 export default function Layout({ children, onLoginClick }) {
+  const { user, logout } = useAuth();
+
   return (
     <div>
       <header>
@@ -8,7 +12,11 @@ export default function Layout({ children, onLoginClick }) {
           <span>Home</span>
           <span>Events</span>
           <span>Cart</span>
-          <span onClick={onLoginClick}>Login</span>
+         {user ? (
+  <span onClick={logout}>Sign out</span>
+) : (
+  <span onClick={onLoginClick}>Login</span>
+)}
         </nav>
       </header>
 

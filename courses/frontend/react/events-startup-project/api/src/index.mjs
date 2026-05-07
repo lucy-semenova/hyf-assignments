@@ -168,6 +168,36 @@ apiRouter.get("/events/:id", (req, res) => {
   res.json(event);
 });
 
+apiRouter.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ error: "Email and password are required" });
+  }
+
+  res.json({
+    accessToken: "fake-token",
+    user: {
+      email,
+    },
+  });
+});
+
+apiRouter.post("/register", (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ error: "Email and password are required" });
+  }
+
+  res.status(201).json({
+    accessToken: "fake-token",
+    user: {
+      email,
+    },
+  });
+});
+
 app.use("/api", apiRouter);
 
 app.listen(process.env.PORT, () => {

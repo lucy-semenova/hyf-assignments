@@ -25,6 +25,7 @@ export function AuthProvider({ children }) {
     }
 
     const { accessToken, user } = await response.json();
+    console.log(user);
     persist(accessToken, user);
   }
 

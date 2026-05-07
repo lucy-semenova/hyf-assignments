@@ -1,13 +1,15 @@
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 function RegisterForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+    const [success, setSuccess] = useState("");
+    const { register } = useAuth();
 
-  function handleSubmit(event) {
+ async function handleSubmit(event) {
     event.preventDefault();
 
     setError("");
@@ -33,7 +35,12 @@ function RegisterForm() {
       return;
     }
 
-    setSuccess("Register form is valid.");
+    try {
+  await register(email, password);
+  setSuccess("Registration successful.");
+} catch (err) {
+  setError(err.message);
+}
   }
 
   return (
