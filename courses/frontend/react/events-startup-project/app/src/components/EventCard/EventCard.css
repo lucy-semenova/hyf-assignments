@@ -6,9 +6,12 @@
   border-radius: 8px;
   background-color: white;
   border: 1px solid #a19c9c;
-  max-width: fit-content;
 }
-
+.eventCard:hover {
+  transform: translateY(-4px);
+  transition: 0.2s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
 .eventTitle {
   margin-bottom: 10px;
 }
@@ -19,8 +22,8 @@
 .eventPrice,
 .eventTicketsLeft {
   margin-bottom: 8px;
-   font-weight: 600;
-   font-size: large;
+  font-weight: 600;
+  font-size: large;
   color: #333;
 }
 

@@ -1,5 +1,7 @@
 import EventCard from "../EventCard/EventCard";
 import EventSearch from "../EventSearch/EventSearch";
+import EventDetail from "../EventDetail/EventDetail";
+import "./EventList.css";
 import { useEffect, useState } from "react";
 
 function EventList() {
@@ -8,7 +10,8 @@ function EventList() {
   const [error, setError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
-const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [selectedEventId, setSelectedEventId] = useState(null);
 
   useEffect(() => {
   async function fetchEvents() {
@@ -48,7 +51,7 @@ setTotalPages(data.totalPages);
   }
 
   return (
-    <section>
+    <section className="event-list">
       <h1>Upcoming Events</h1>
 
  <EventSearch
@@ -61,8 +64,11 @@ setTotalPages(data.totalPages);
       {events.length === 0 ? (
         <p className="noEvents">No events available.</p>
       ) : (
-        <>
-          <ul>
+          <>
+             {selectedEventId && (
+    <EventDetail eventId={selectedEventId} onClose={() => setSelectedEventId(null)} />
+  )}
+          <ul className="event-grid">
             {events.map((event) => (
               <EventCard
                 key={event.id}
@@ -75,12 +81,14 @@ setTotalPages(data.totalPages);
                 category={event.category}
                 price={event.price}
                 ticketsAvailable={event.ticketsAvailable}
+                onClick={() => setSelectedEventId(event.id)}
                 
               />
             ))}
+              
           </ul>
           {totalPages > 1 && (
-            <div>
+            <div className="pagination">
               <button onClick={() => setPage(page - 1)} disabled={page === 1}>
                 Previous
               </button>
@@ -92,7 +100,8 @@ setTotalPages(data.totalPages);
                 Next
               </button>
             </div>
-          )}
+            )}
+           
         </>
       )}
     </section>

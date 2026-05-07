@@ -1,73 +1,104 @@
 // TODO: use useParams() to get the event id from the URL
 // TODO: fetch the event from GET /events/:id instead of using mock data
-import { useState } from "react";
-import events from "../../data/events";
+import { useState, useEffect } from "react";
 import "./EventDetail.css";
 
-export default function EventDetail() {
-const event = events[2];
+
+export default function EventDetail({ eventId, onClose }) {
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [quantity, setQuantity] = useState(1);
     
- const getPriceMessage = () => {
-  return event.price === 0
-     ? "Free" :`${event.price} DKK`;
-  };
+  useEffect(() => {
+    async function fetchEventDetail() {
+      try {
+        setLoading(true);
+        setError("");
 
-   const getAvailabilityMessage = () => {
-     return event.ticketsAvailable === 0
-       ? "Sold out"
-       : `${event.ticketsAvailable} tickets left`;
-  };
+        const response = await fetch(
+          `http://localhost:3001/api/events/${eventId}`
+        );
 
-  const getTotalPriceMessage = () => {
-    if (event.price === 0) {
-      return "Free";
+        if (!response.ok) {
+          throw new Error("Failed to load event detail");
+        }
+
+        const data = await response.json();
+        setEvent(data);
+        setQuantity(1);
+      } catch (err) {
+        setError("Could not load event details.");
+      } finally {
+        setLoading(false);
+      }
     }
-    return `${quantity * event.price} DKK`;
-  };
 
-const handleQuantityChange = (e) => {
-    const value = Number(e.target.value);
-    if (value < 1) {
-      setQuantity(1);
-    } else if (value > event.ticketsAvailable) {
-      setQuantity(event.ticketsAvailable);
-    } else {
-      setQuantity(value);
+    if (eventId) {
+      fetchEventDetail();
     }
-  };
+  }, [eventId]);
+
+  function handleQuantityChange(e) {
+    setQuantity(Number(e.target.value));
+  }
+  function getPriceMessage() {
+    return event.price === 0 ? "Free" : `${event.price} DKK`;
+  }
+
+  function getAvailabilityMessage() {
+    return event.ticketsAvailable === 0
+      ? "Sold out"
+      : `${event.ticketsAvailable} tickets available`;
+  }
+
+  function getTotalPriceMessage() {
+    return event.price === 0 ? "Free" : `${event.price * quantity} DKK`;
+  }
+  if (loading) return <p>Loading event details...</p>;
+  if (error) return <p>{error}</p>;
+  if (!event) return null;
+
 
   return (
-<section>
-      <h1>Event Details</h1>
+    <div className="event-detail-overlay">
+      <section className="event-detail">
+        <button className="closeButton" onClick={onClose}>
+          ✕
+        </button>
 
-      <h2>{event.title}</h2>
+        <h1>Event Details</h1>
 
-      <p>Date: {event.date}</p>
-      <p>Time: {event.time}</p>
-      <p>Venue: {event.venue}, {event.city}</p>
-      <p>Description: {event.description}</p>
-      <p>Price: {getPriceMessage()}</p>
-      <p>Availability: {getAvailabilityMessage()}</p>
+        <h2>{event.title}</h2>
 
-      {event.ticketsAvailable === 0 ? (
-        <p>This event is sold out</p>
-      ) : (
-        <>
-          <label htmlFor="ticketQuantity">Ticket Quantity:</label>
+        <p>Date: {event.date}</p>
+        <p>Time: {event.time}</p>
+        <p>
+          Venue: {event.venue}, {event.city}
+        </p>
+        <p>Description: {event.description}</p>
+        <p>Price: {getPriceMessage()}</p>
+        <p>Availability: {getAvailabilityMessage()}</p>
 
-          <input
-            type="number"
-            id="ticketQuantity"
-            min="1"
-            max={event.ticketsAvailable}
-            value={quantity}
-            onChange={handleQuantityChange}
-          />
+        {event.ticketsAvailable === 0 ? (
+          <p>This event is sold out</p>
+        ) : (
+          <>
+            <label htmlFor="ticketQuantity">Ticket Quantity:</label>
 
-          <p>Total price: {getTotalPriceMessage()}</p>
-        </>
-      )}
-    </section>
+            <input
+              type="number"
+              id="ticketQuantity"
+              min="1"
+              max={event.ticketsAvailable}
+              value={quantity}
+              onChange={handleQuantityChange}
+            />
+
+            <p>Total price: {getTotalPriceMessage()}</p>
+          </>
+        )}
+      </section>
+    </div>
   );
 }

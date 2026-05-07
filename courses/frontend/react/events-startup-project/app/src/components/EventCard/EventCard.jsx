@@ -7,11 +7,15 @@ function EventCard({
   venue,
   city,
   price,
+  description,
   ticketsAvailable,
   category,
+  onClick,
 }) {
   const getAvailabilityMessage = () => {
-    return ticketsAvailable === 0 ? "Sold out" : `${ticketsAvailable} tickets left`;
+    return ticketsAvailable === 0
+      ? "Sold out"
+      : `${ticketsAvailable} tickets left`;
   };
 
   const getPriceMessage = () => {
@@ -31,7 +35,11 @@ function EventCard({
       <p className="eventPrice">{getPriceMessage()}</p>
 
       <p className="eventTicketsLeft">{getAvailabilityMessage()}</p>
-      <button className="buyTicketButton" disabled={ticketsAvailable === 0}>
+      <button
+        className="buyTicketButton"
+        disabled={ticketsAvailable === 0}
+        onClick={onClick}
+      >
         {ticketsAvailable === 0 ? "Sold out" : "Buy ticket"}
       </button>
     </li>

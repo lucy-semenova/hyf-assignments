@@ -3,7 +3,7 @@ export default function Layout({ children }) {
   return (
     <div>
       <header>
-        <h1>Event Startup</h1>
+        <h1 className="logo">Event Startup</h1>
         <nav>
           <span>Home</span>
           <span>Events</span>
