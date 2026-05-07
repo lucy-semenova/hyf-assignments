@@ -1,18 +1,42 @@
 import { useState } from "react";
 import "./LoginForm.css";
 
+
 function LoginForm() {
   const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
-function handleSubmit(event) {
-    event.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
-  // Handle login logic here
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        setError("");
+        setSuccess("");
+        if (!email) { 
+            setError("Email is required.");
+            return;
+        }
+if (!email.includes("@")) {
+  setError("Please enter a valid email address.");
+  return;
 }
+if (!password) {
+  setError("Password is required.");
+  return;
+        }
+        if (password.length < 6) {
+  setError("Password must be at least 6 characters.");
+  return;
+        }
+        setSuccess("Login form is valid.");
+    }
 return (
-<form onSubmit={handleSubmit}>
+    <form className="login-form" onSubmit={handleSubmit}>
+           {error && <p className="errorMessage">{error}</p>}
+    {success && <p className="successMessage">{success}</p>}
+
 <input 
 id="email" 
 type="email" 

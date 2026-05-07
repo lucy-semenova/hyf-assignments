@@ -1,18 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import Layout from "./components/Layout/Layout";
 import EventSection from "./components/EventSection/EventSection";
-import LoginForm from "./components/LoginForm/LoginForm";
+import Login from "./components/Login/Login";
 import "./main.css";
 
 
+function App() {
+  const [showLogin, setShowLogin] = useState(false);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <Layout>
-    <EventSection />
-    <LoginForm/>
+  return (
+    <Layout onLoginClick={() => setShowLogin(true)}>
+      <EventSection />
+
+      {showLogin && <Login onClose={() => setShowLogin(false)} />}
     </Layout>
-);
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 
 /*
 import React from "react";

@@ -1,5 +1,5 @@
 import "./Layout.css";
-export default function Layout({ children }) {
+export default function Layout({ children, onLoginClick }) {
   return (
     <div>
       <header>
@@ -8,7 +8,7 @@ export default function Layout({ children }) {
           <span>Home</span>
           <span>Events</span>
           <span>Cart</span>
-          <span>Login</span>
+          <span onClick={onLoginClick}>Login</span>
         </nav>
       </header>
 
@@ -20,7 +20,6 @@ export default function Layout({ children }) {
     </div>
   );
 }
-
 
 /*
 import { Link, Outlet } from "react-router-dom";
@@ -57,7 +56,7 @@ export default function Layout() {
             />
           </a>
           {/* Navigation links go here — e.g. link to event list, cart, login */
-          /*<Link to="/events" className="link">
+/*<Link to="/events" className="link">
             Events
           </Link>
 
@@ -78,7 +77,7 @@ export default function Layout() {
       </main>
 
       <footer>{/* Footer content goes here */
-      /*</footer >
+/*</footer >
     </div>
   );
 }*/
