@@ -1,4 +1,45 @@
 import styles from "./OurPartners.module.css";
+const ourPartnersData = [
+  {
+    id: 1,
+    image: "/business_partners/alphabet-logo.png",
+    alt: "Alphabet logo",
+  },
+
+  {
+    id: 2,
+    image: "/business_partners/amazon_logo.png",
+    alt: "Amazon logo",
+  },
+  {
+    id: 3,
+    image: "/business_partners/Microsoft-Logo-white.png",
+    alt: "Microsoft Logo",
+  },
+  {
+    id: 4,
+    image: "/business_partners/nyu-logo.png",
+    alt: "Nyu logo",
+  },
+  {
+    id: 5,
+    image: "/business_partners/QueensLogo_white.png",
+    alt: "Queens Logo",
+  },
+  {
+    id: 6,
+    image: "/business_partners/samsung-logo.png",
+    alt: "Samsung logo",
+  },
+];
+
+const OurPartnersCard = ({ image, alt }) => {
+  return (
+    <div className={styles.card}>
+      <img className={styles.image} src={image} alt={alt} />
+    </div>
+  );
+};
 
 const OurPartners = () => {
   return (
@@ -11,50 +52,18 @@ const OurPartners = () => {
             and technology industries to make every journey extraordinary.
           </p>
         </div>
-        <div className={styles.grid}>
-          <div className={styles.card}>
-            <img
-              className={styles.logo}
-              src="/business_partners/alphabet-logo.png"
-              alt="Alphabet logo"
-            />
+
+        <section className={styles.section}>
+          <div className={styles.grid}>
+            {ourPartnersData.map((partner) => (
+              <OurPartnersCard
+                key={partner.id}
+                image={partner.image}
+                alt={partner.alt}
+              />
+            ))}
           </div>
-          <div className={styles.card}>
-            <img
-              className={styles.logo}
-              src="/business_partners/amazon_logo.png"
-              alt="Amazon logo"
-            />
-          </div>
-          <div className={styles.card}>
-            <img
-              className={styles.logo}
-              src="/business_partners/Microsoft-Logo-white.png"
-              alt="Microsoft Logo"
-            />
-          </div>
-          <div className={styles.card}>
-            <img
-              className={styles.logo}
-              src="/business_partners/nyu-logo.png"
-              alt="Nyu logo"
-            />
-          </div>
-          <div className={styles.card}>
-            <img
-              className={styles.logo}
-              src="/business_partners/QueensLogo_white.png"
-              alt="Queens Logo"
-            />
-          </div>
-          <div className={styles.card}>
-            <img
-              className={styles.logo}
-              src="/business_partners/samsung-logo.png"
-              alt="Samsung logo"
-            />
-          </div>
-        </div>
+        </section>
       </div>
     </section>
   );

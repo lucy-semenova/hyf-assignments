@@ -12,18 +12,16 @@ export const Crew = () => {
     <div className="fullBGpicture">
       <main className="mainContent">
         <h1>About us</h1>
-                <section className="card">
-                    <OurValues />
+        <section className="card">
+          <OurValues />
         </section>
         <section className="card">
-                  <OurCrew />
+          <OurCrew />
         </section>
         <section className="card">
-          
           <OurPartners />
         </section>
-
-          </main>
+      </main>
     </div>
   );
 };

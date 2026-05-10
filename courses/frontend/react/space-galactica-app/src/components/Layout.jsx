@@ -12,11 +12,11 @@ export const RootLayout = () => {
     <div className="inter">
       <Navbar />
       <Outlet />
-      <Footer/>
+      <Footer />
       {/* 🧑🏽‍🚀 Task - Week 1 */}
       {/* Import and use the Footer component here. */}
     </div>
   );
-}
+};
 
 export default RootLayout;
