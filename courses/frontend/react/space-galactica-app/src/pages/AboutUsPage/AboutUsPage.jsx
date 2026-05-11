@@ -1,7 +1,7 @@
-import styles from "./AboutUsPage.module.css";
 import OurCrew from "./OurCrew";
 import OurPartners from "./OurPartners";
 import OurValues from "./OurValues";
+
 
 // 🧑🏽‍🚀 Task - Week 1
 // After you are finished with creating the page, move the OurValues, OurCrew, OurPartners components into their own files in this folder.

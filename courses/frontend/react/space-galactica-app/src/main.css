@@ -94,7 +94,7 @@ body {
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
-    )
+    ),
     rgb(var(--background-start-rgb));
 }
 
@@ -125,6 +125,7 @@ button {
   padding: var(--spacing-08);
   border: none;
   background-color: white;
+  border-radius: var(--border-radius);
   color: black;
   font-weight: 600;
   letter-spacing: 2px;
@@ -137,16 +138,20 @@ button {
 }
 
 .mainContent {
-  max-width: var(--max-width);
-  margin: auto;
+  width: min(1200px, 95%);
+  margin: 0 auto;
   padding-block-start: var(--header-height);
   color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-32);
 }
 
 .card {
   position: relative;
-  padding: var(--spacing-12);
-  margin: var(--spacing-16);
+  padding: var(--spacing-24);
+  margin: 20px;
 }
 
 .card::before {
@@ -165,41 +170,6 @@ button {
   z-index: 2;
 }
 
-.roundButtonJumbo {
-  padding: unset;
-  height: 250px;
-  width: 250px;
-  min-height: 250px;
-  min-width: 250px;
-  line-height: 250px;
-  background-color: white;
-  border-radius: 50%;
-  font-size: 30px;
-  font-weight: 200;
-  letter-spacing: 4px;
-}
-
-.roundButton {
-  padding: var(--spacing-08);
-  height: 100px;
-  width: 100px;
-  min-height: 100px;
-  min-width: 100px;
-  line-height: 1.2;
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  border-radius: 50%;
-  font-size: var(--font-size-3xs);
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
 
 .fullBGpicture {
   top: 0;

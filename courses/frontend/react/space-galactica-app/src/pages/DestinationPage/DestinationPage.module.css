@@ -1,84 +1,92 @@
-.app {
-  background-color: black;
-  width: 100vw;
-  height: 100vh;
+.wishlistContent {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--spacing-32);
+  margin-top: var(--spacing-24);
 }
 
-.planetCard {
-  border: 1px solid var(--border-color);
-  max-width: 70%;
-  margin: var(--spacing-20) 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-08);
-  gap: var(--spacing-08);
-}
-
-.planetCard:nth-child(odd) {
-  margin-inline-start: auto;
-}
-
-.planetCard > *:last-child {
-  margin-inline-start: auto;
-}
-
-.planetDescription {
-  padding-block-start: var(--spacing-04);
-  margin-block-end: auto;
-}
-
-.planetThumbnail {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin: 0 var(--spacing-16);
-}
-
-.wishlistItem {
-  border: 1px solid var(--border-color);
-  width: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-16);
-  margin: var(--spacing-20);
-  padding: var(--spacing-20);
-}
-
-.wishlistItemThumbnail {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin: 0 var(--spacing-16);
-}
-.wishlistList {
-  display: flex;
-  margin: var(--spacing-16) 0;
+.addWishlistItem,
+.currentWishlist {
+  background-color: #000;
+  border-radius: 12px;
+  padding: var(--spacing-24);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .addWishlistItem {
-  border: 1px solid var(--border-color);
-  width: 200px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: stretch;
-  margin: var(--spacing-20);
-  padding: var(--spacing-20);
+  width: 100%;
+  margin: 0;
 }
 
 .addWishlistItem p {
-  margin-block-end: var(--spacing-20);
+  margin-bottom: var(--spacing-24);
+   margin-top: var(--spacing-24);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
 }
 
 .addWishlistItem label {
-  margin: 0;
-  font-size: small;
+  margin-bottom: var(--spacing-08);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
 }
 
 .addWishlistItem input,
 .addWishlistItem select {
-  height: 30px;
-  margin-block-end: var(--spacing-20);
+  width: 100%;
+  height: 42px;
+  margin-bottom: var(--spacing-20);
+  padding: 0 var(--spacing-12);
+}
+
+.addWishlistItem button {
+  width: 100%;
+}
+
+.currentWishlist h3 {
+  margin-bottom: var(--spacing-20);
+}
+.planetCardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-24);
+}
+.emptyWishlist {
+  min-height: 180px;
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-08);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.wishlistList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-16);
+  margin-top: var(--spacing-16);
+}
+
+.wishlistItem {
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  padding: var(--spacing-16);
+  margin: 0;
+}
+
+.wishlistItemThumbnail {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .wishlistContent {
+    grid-template-columns: 1fr;
+  }
 }
