@@ -1,8 +1,9 @@
-import { useState } from "react";
-import PlanetCard from "../../components/PlanetCard/PlanetCard";  
+import { useContext } from "react";
+import PlanetCard from "../../components/PlanetCard/PlanetCard";
 import styles from "./DestinationPage.module.css";
 import { AddWishlistItem } from "./AddWishlistItem";
 import PlanetsWishlistItem from "./PlanetsWishlistItem";
+import { WishlistContext } from "../../components/context/WishlistContext";
 
 const planets = [
   {
@@ -28,23 +29,13 @@ const planets = [
 ];
 
  const Destinations = () => {
-  const [planetsWishlist, setPlanetsWishlist] = useState([]);
-
-   const isPlanetInWishlist = (planetName) => {
-     return planetsWishlist.some((planet) => planet.name === planetName);
-   };
- 
-  
-  const addPlanetToWishlist = (name, thumbnail) => {
-    setPlanetsWishlist([...planetsWishlist, { name: name, thumbnail: thumbnail }]);
-  };
-  
-  const removePlanetFromWishlist = (name) => {
- const updatedList = planetsWishlist.filter(
-    (planet) => planet.name !== name
-  );
-    setPlanetsWishlist(updatedList);    
-  };
+   const {
+    planetsWishlist,
+    addPlanetToWishlist,
+    removePlanetFromWishlist,
+    isPlanetInWishlist,
+    wishlistCount,
+  } = useContext(WishlistContext);
     
   const togglePlanetSelection = (name, thumbnail) => {
     if (isPlanetInWishlist(name)) {
@@ -56,7 +47,7 @@ const planets = [
 };
  
 
-  const numberOfPlanetsInWishlist = planetsWishlist.length;
+ const numberOfPlanetsInWishlist = wishlistCount;
   
   function renderWishlistMessage() {
   if (numberOfPlanetsInWishlist === 0) {
@@ -144,7 +135,7 @@ const planets = [
 
 export default Destinations;
 
-// 🧑🏽‍🚀 Task - Week 4 - part 2
+// 🧑🏽‍🚀 Task - Week 4 - part 2 -Done
 // Hate to break it to you, but you will have to make some changes to the code you already wrote.
 // Now that you have context, grab and use the context data in this.
 // You will need to replace some of the variables and functions with the ones from the context.
