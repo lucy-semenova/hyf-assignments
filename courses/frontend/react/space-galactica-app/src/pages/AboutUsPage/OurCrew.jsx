@@ -54,9 +54,6 @@ const OurCrewCard = ({ image, alt, name, role, bio }) => {
 };
 
 const OurCrew = () => {
-  // 🧑🏽‍🚀 Task - Week 1
-
-  // Some inspiration ideas can be found in /data/inspiration_about_us
   return (
     <section className={styles.section}>
       <div className={styles.container}>

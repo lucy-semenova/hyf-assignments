@@ -53,8 +53,6 @@ export const Navbar = () => {
         <div className={styles.navbarBG} />
 
         <ul className={styles.navbarList}>
-          {/* 🧑🏽‍🚀 Task - Week 3 */}
-          {/* Replace repeating content by using .map() and the previously created NavItem component. */}
           {navbarItems.map((item, index) => (
             <NavItem
               key={item.link}

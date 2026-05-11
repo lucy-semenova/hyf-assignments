@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./NasaCollaborationPage.module.css";
 
-// Read "/app/nasa_collaboration/README.md" for more info about the API_KEY
-// You need a proper API_KEY for the requests to work
 const API_KEY = import.meta.env.VITE_NASA_API_KEY;
 
 const NASA_URLs = {
@@ -30,8 +28,6 @@ export const NasaCollaboration = () => {
   console.log(roverPhoto);
 
   useEffect(() => {
-    // 🧑🏽‍🚀 Task - Week 3 Done
-    // Fetch the extra data for NASA_URLs.astronomyPicOfTheDay and save it to the dailyImg state variable.
     const fetchPicOfTheDay = async () => {
       const response = await fetch(NASA_URLs.astronomyPicOfTheDay);
       const picOfTheDay = await response.json();
@@ -64,9 +60,6 @@ export const NasaCollaboration = () => {
               <p className={styles.number}>01</p>
               <h2 className={styles.cardTitle}>Astronomy Picture of the Day</h2>
 
-              {/* 🧑🏽‍🚀 Task - Week 3 Done*/}
-              {/* After fetching data from the NASA_URLs.astronomyPicOfTheDay url, display the returned data here. */}
-              {/* You should display the title, explanation, and the image using the url from the response */}
               {dailyImg?.url ? (
                 <>
                   <h3 className={styles.mediaTitle}>{dailyImg.title}</h3>
@@ -95,8 +88,6 @@ export const NasaCollaboration = () => {
               <p className={styles.number}>02</p>
               <h2 className={styles.cardTitle}>Mars Rover Photos</h2>
 
-              {/* 🧑🏽‍🚀 Task - Week 3 Done*/}
-              {/* Iterate over the roverPhoto?.collection array and display all the pictures. */}
               <div className={styles.roverGrid}>
                 {roverPhoto?.collection?.items?.length ? (
                   roverPhoto.collection.items
