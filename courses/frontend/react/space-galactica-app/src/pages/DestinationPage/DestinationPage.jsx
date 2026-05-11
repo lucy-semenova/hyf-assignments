@@ -78,15 +78,9 @@ const Destinations = () => {
   //    🧑🏽‍🚀 Use a variable to display the number of wishlist planets:  */}
   const numberOfPlanetsInWishlist = planetsWishlist.length;
 
-  function renderWishlistMessage() {
-    if (numberOfPlanetsInWishlist === 0) {
-      return <p>No planets in your wishlist :(</p>;
-    } else {
-      return (
-        <p>You have {numberOfPlanetsInWishlist} planets in your wishlist</p>
-      );
-    }
-  }
+  const wishlistMessage = numberOfPlanetsInWishlist === 0
+    ? "No planets in your wishlist "
+    : `You have ${numberOfPlanetsInWishlist} planets in your wishlist`;
 
   return (
     <div className="fullBGpicture">
@@ -95,7 +89,7 @@ const Destinations = () => {
         <section className="card">
           <h2>Wishlist</h2>
 
-          {renderWishlistMessage()}
+          <p>{wishlistMessage}</p>
 
           {/* 🧑🏽‍🚀 Task - Week 3 */}
           {/* Use the AddWishlistItem component here. */}
