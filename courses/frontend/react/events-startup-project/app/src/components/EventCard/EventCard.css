@@ -1,0 +1,36 @@
+.eventCard {
+  list-style: none;
+  border: 2px solid grey;
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 8px;
+  background-color: white;
+  border: 1px solid #a19c9c;
+  max-width: fit-content;
+}
+
+.eventTitle {
+  margin-bottom: 10px;
+}
+
+.eventDate,
+.eventVenue,
+.eventType,
+.eventPrice,
+.eventTicketsLeft {
+  margin-bottom: 8px;
+   font-weight: 600;
+   font-size: large;
+  color: #333;
+}
+
+.buyTicketButton {
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.buyTicketButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
