@@ -1,8 +1,53 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import styles from "./Footer.module.css";
+import { navigationItems } from "../data/navigation";
 
 export const Footer = () => {
   const { pathname } = useLocation();
+
+  const socialMediaItemLinks = [
+    {
+      url: "https://facebook.com",
+      title: "Facebook",
+      icon: "/socialMedia/facebook.png",
+    },
+    {
+      url: "https://tiktok.com",
+      title: "Tiktok",
+      icon: "/socialMedia/tiktok.png",
+    },
+    {
+      url: "https://instagram.com",
+      title: "Instagram",
+      icon: "/socialMedia/instagram.png",
+    },
+    {
+      url: "https://www.linkedin.com/",
+      title: "LinkedIn",
+      icon: "/socialMedia/linkedin.png",
+    },
+    {
+      url: "https://google.com",
+      title: "On the streets at night",
+      icon: "/socialMedia/google.png",
+    },
+  ];
+
+  const SocialMediaItem = ({ url, title, icon }) => {
+    return (
+      <li>
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className={styles.socialLink}
+        >
+          <img src={icon} alt={title} className={styles.socialMediaIcon} />
+          <span>{title}</span>
+        </a>
+      </li>
+    );
+  };
 
   return (
     <footer className={pathname !== "/" ? styles.footer : styles.hidden}>
@@ -14,43 +59,31 @@ export const Footer = () => {
         </p>
         <p>&copy; 2024 Galactica. All rights reserved.</p>
       </div>
-      {/* 🧑🏽‍🚀 Task - Week 2 */}
-      {/* Create a new list for the Pages. */}
-      {/* We need to use the <Link /> component here. */}
-      {/* <div className={styles.pages}>
-        <h3>Pages</h3>
-        <ul>
-          <li> <Link/> </li>
-          ...
-        </ul>
-      </div> */}
-      {/* Docs for the Link: https://reactrouter.com/api/components/Link#link. */}
 
-      {/* 🧑🏽‍🚀 Task - Week 1 - Done */}
-      {/* Add a new list item for LINKEDIN */}
+      <div className={styles.pages}>
+        <h3>Pages</h3>
+
+        <ul>
+          {navigationItems.map((page) => (
+            <li key={page.link}>
+              <Link to={page.link}>{page.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       <div className={styles.footerLinks}>
         <h3>Follow us</h3>
-        <ul className={styles.footerList}>
-          <li>
-            <a href="https://facebook.com">Facebook</a>
-          </li>
-          <li>
-            <a href="https://instagram.com">Instagram</a>
-          </li>
-          <li>
-            <a href="https://tiktok.com">Tiktok</a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/">LinkedIn</a>
-          </li>
-          <li>
-            <a href="https://google.com">On the streets at night</a>
-          </li>
 
-          {/* 🧑🏽‍🚀 Task - Week 2 */}
-          {/* Create a <SocialMediaItem /> component and replace all of the list items! */}
-          {/* SocialMediaItem should accept the following props: url, title, icon. */}
-          {/* For the icons, you can download 1-2 social media icons for testing and put it in the /public/socialmedia/ folder. */}
+        <ul className={styles.footerList}>
+          {socialMediaItemLinks.map((link) => (
+            <SocialMediaItem
+              key={link.url}
+              url={link.url}
+              title={link.title}
+              icon={link.icon}
+            />
+          ))}
         </ul>
       </div>
     </footer>
