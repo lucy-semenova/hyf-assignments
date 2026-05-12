@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import api from "../api.js";
+import api from "../services/api.js";
 
 const AuthContext = createContext(null);
 
@@ -25,7 +25,6 @@ export function AuthProvider({ children }) {
     }
 
     const { accessToken, user } = await response.json();
-    console.log(user);
     persist(accessToken, user);
   }
 
@@ -41,14 +40,14 @@ export function AuthProvider({ children }) {
     }
 
     const { accessToken, user } = await response.json();
-    persist(accessToken, user);  
+    persist(accessToken, user);
   }
 
   function logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-     setToken(null);
-  setUser(null);
+    setToken(null);
+    setUser(null);
   }
 
   function persist(accessToken, user) {

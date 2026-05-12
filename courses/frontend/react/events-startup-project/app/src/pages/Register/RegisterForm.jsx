@@ -6,10 +6,10 @@ function RegisterForm() {
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
-    const { register } = useAuth();
+  const [success, setSuccess] = useState("");
+  const { register } = useAuth();
 
- async function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     setError("");
@@ -36,15 +36,15 @@ function RegisterForm() {
     }
 
     try {
-  await register(email, password);
-  setSuccess("Registration successful.");
-} catch (err) {
-  setError(err.message);
-}
+      await register(email, password);
+      setSuccess("Registration successful.");
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   return (
-    <form className="loginForm" onSubmit={handleSubmit}>
+    <form className="registerForm" onSubmit={handleSubmit}>
       {error && <p className="errorMessage">{error}</p>}
 
       {success && <p className="successMessage">{success}</p>}

@@ -12,11 +12,11 @@ export default function Layout({ children, onLoginClick }) {
           <span>Home</span>
           <span>Events</span>
           <span>Cart</span>
-         {user ? (
-  <span onClick={logout}>Sign out</span>
-) : (
-  <span onClick={onLoginClick}>Login</span>
-)}
+          {user ? (
+            <button onClick={logout}>Sign out</button>
+          ) : (
+            <button onClick={onLoginClick}>Login</button>
+          )}
         </nav>
       </header>
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import api from "../../api";
+import api from "../../services/api";
 
 // This page can be deleted once you add your own page
 function TestPage() {

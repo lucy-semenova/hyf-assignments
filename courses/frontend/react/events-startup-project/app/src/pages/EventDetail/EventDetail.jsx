@@ -1,24 +1,20 @@
-// TODO: use useParams() to get the event id from the URL
-// TODO: fetch the event from GET /events/:id instead of using mock data
 import { useState, useEffect } from "react";
 import "./EventDetail.css";
-
+import api from "../../services/api";
 
 export default function EventDetail({ eventId, onClose }) {
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [quantity, setQuantity] = useState(1);
-    
+
   useEffect(() => {
     async function fetchEventDetail() {
       try {
         setLoading(true);
         setError("");
 
-        const response = await fetch(
-          `http://localhost:3001/api/events/${eventId}`
-        );
+        const response = await fetch(api(`/events/${eventId}`));
 
         if (!response.ok) {
           throw new Error("Failed to load event detail");
@@ -58,7 +54,6 @@ export default function EventDetail({ eventId, onClose }) {
   if (loading) return <p>Loading event details...</p>;
   if (error) return <p>{error}</p>;
   if (!event) return null;
-
 
   return (
     <div className="event-detail-overlay">
