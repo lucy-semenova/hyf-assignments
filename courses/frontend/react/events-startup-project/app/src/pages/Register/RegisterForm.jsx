@@ -56,7 +56,7 @@ function RegisterForm() {
         onChange={(event) => setEmail(event.target.value)}
       />
 
-      <input
+      <input 
         type="password"
         placeholder="Enter Password"
         value={password}
