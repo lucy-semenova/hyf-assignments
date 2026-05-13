@@ -1,8 +1,9 @@
 import { useCart } from "../../context/CartContext";
-
+import { useAuth } from "../../context/AuthContext";
 function CartPage() {
   const { cartItems, removeFromCart, updateQuantity, clearCart, cartTotal } =
     useCart();
+  const { user } = useAuth();
 
   if (cartItems.length === 0) {
     return (
@@ -57,6 +58,11 @@ function CartPage() {
       <h2>Total: {cartTotal === 0 ? "Free" : `${cartTotal} DKK`}</h2>
 
       <button onClick={clearCart}>Clear cart</button>
+      {user ? (
+        <button>Proceed to Checkout</button>
+      ) : (
+        <p>You must be logged in to checkout.</p>
+      )}
     </section>
   );
 }
