@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./EventDetail.css";
 import api from "../../services/api";
+import { useCart } from "../../context/CartContext";
 
 export default function EventDetail({ eventId, onClose }) {
   const [event, setEvent] = useState(null);
@@ -8,6 +9,7 @@ export default function EventDetail({ eventId, onClose }) {
   const [error, setError] = useState("");
   const [quantity, setQuantity] = useState(1);
 
+  const { addToCart } = useCart();
   useEffect(() => {
     async function fetchEventDetail() {
       try {
@@ -51,6 +53,9 @@ export default function EventDetail({ eventId, onClose }) {
   function getTotalPriceMessage() {
     return event.price === 0 ? "Free" : `${event.price * quantity} DKK`;
   }
+  function handleAddToCart() {
+    addToCart(event, quantity);
+  }
   if (loading) return <p>Loading event details...</p>;
   if (error) return <p>{error}</p>;
   if (!event) return null;
@@ -91,6 +96,7 @@ export default function EventDetail({ eventId, onClose }) {
             />
 
             <p>Total price: {getTotalPriceMessage()}</p>
+            <button onClick={handleAddToCart}>Add to cart</button>
           </>
         )}
       </section>
