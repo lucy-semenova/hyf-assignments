@@ -1,20 +1,43 @@
 import "./Layout.css";
+import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 
 export default function Layout({ children, onLoginClick }) {
   const { user, logout } = useAuth();
+  const { cartCount, clearCart } = useCart();
+  const [showMenu, setShowMenu] = useState(false);
+
+  function handleLogout() { 
+    logout();
+    clearCart();
+    setShowMenu(false);
+  }
 
   return (
     <div>
       <header>
         <h1 className="logo">Event Startup</h1>
+
         <nav>
           <Link to="/">Home</Link>
-<Link to="/events">Events</Link>
-<Link to="/cart">Cart</Link>
+          <Link to="/events">Events</Link>
+          <Link to="/cart">Cart ({cartCount})</Link>
+
           {user ? (
-            <button onClick={logout}>Sign out</button>
+            <div className="accountMenu">
+              <button onClick={() => setShowMenu(!showMenu)}>Account ▼</button>
+
+              {showMenu && (
+                <div className="dropdownMenu">
+                   <p>{user.email}</p>
+                  <Link to="/account">Profile</Link>
+                  <Link to="/orders">Orders</Link>
+                  <button onClick={handleLogout}>Sign out</button>
+                </div>
+              )}
+            </div>
           ) : (
             <button onClick={onLoginClick}>Login</button>
           )}
@@ -29,64 +52,3 @@ export default function Layout({ children, onLoginClick }) {
     </div>
   );
 }
-
-/*
-import { Link, Outlet } from "react-router-dom";
-import hyfLogo from "../../assets/hyf.svg";
-import { useAuth } from "../../context/AuthContext.jsx";
-
-export default function Layout() {
-  const { user, logout } = useAuth();
-
-  return (
-    <div>
-      <header>
-        <nav
-          style={{
-            width: "100%",
-            display: "flex",
-            gap: "20px",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "10px 20px",
-          }}
-        >
-          <a
-            href="https://www.hackyourfuture.dk/"
-            target="_blank"
-            className="link"
-          >
-            <img
-              src={hyfLogo}
-              alt="HackYourFuture logo"
-              className="logo"
-              width={200}
-              style={{ padding: "20px" }}
-            />
-          </a>
-          {/* Navigation links go here — e.g. link to event list, cart, login */
-/*<Link to="/events" className="link">
-            Events
-          </Link>
-
-          {user && (
-            <>
-              <span>{user.email}</span>
-              <button onClick={logout}>Sign out</button>
-            </>
-          )}
-
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-        </nav>
-      </header>
-
-      <main>
-        <Outlet />
-      </main>
-
-      <footer>{/* Footer content goes here */
-/*</footer >
-    </div>
-  );
-}*/

@@ -40,8 +40,10 @@ export function CartProvider({ children }) {
     );
   }
 
-  function clearCart() {
-    setCartItems([]);
+    function clearCart() {
+        setCartItems([]);
+        localStorage.removeItem("cartItems");
+   
   }
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);

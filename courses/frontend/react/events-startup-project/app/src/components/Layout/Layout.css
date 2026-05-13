@@ -83,3 +83,27 @@ footer {
   bottom: 0;
   width: 100%;
 }
+.accountMenu {
+  position: relative;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 160px;
+  padding: 12px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+}
+
+.dropdownMenu p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
