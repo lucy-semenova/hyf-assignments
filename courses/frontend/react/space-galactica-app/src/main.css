@@ -1,7 +1,8 @@
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+  --font-mono:
+    ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
@@ -87,14 +88,10 @@ body {
   overflow-x: hidden;
 }
 
-
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
+  background:
+    linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))),
     rgb(var(--background-start-rgb));
 }
 
@@ -103,12 +100,19 @@ a {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-block-end: var(--spacing-08);
   color: var(--primary-text-color);
 }
 
-p, b, i {
+p,
+b,
+i {
   margin-block-end: var(--spacing-08);
 }
 
@@ -118,6 +122,7 @@ button {
   padding: var(--spacing-08);
   border: none;
   background-color: white;
+  border-radius: var(--border-radius);
   color: black;
   font-weight: 600;
   letter-spacing: 2px;
@@ -130,17 +135,20 @@ button {
 }
 
 .mainContent {
-  max-width: var(--max-width);
-  margin: auto;
+  width: min(1200px, 95%);
+  margin: 0 auto;
   padding-block-start: var(--header-height);
   color: #fff;
-}
 
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-32);
+}
 
 .card {
   position: relative;
-  padding: var(--spacing-12);
-  margin: var(--spacing-16);
+  padding: var(--spacing-24);
+  margin: 20px;
 }
 
 .card::before {
@@ -159,42 +167,6 @@ button {
   z-index: 2;
 }
 
-.roundButtonJumbo {
-  padding: unset;
-  height: 250px;
-  width: 250px;
-  min-height: 250px;
-  min-width: 250px;
-  line-height: 250px;
-  background-color: white;
-  border-radius: 50%;
-  font-size: 30px;
-  font-weight: 200;
-  letter-spacing: 4px;
-}
-
-.roundButton {
-  padding: var(--spacing-08);
-  height: 100px;
-  width: 100px;
-  min-height: 100px;
-  min-width: 100px;
-  line-height: 1.2;
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  border-radius: 50%;
-  font-size: var(--font-size-3xs);
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
 .fullBGpicture {
   top: 0;
   bottom: 0;
@@ -206,7 +178,7 @@ button {
 
 .fullBGpicture::before {
   content: "";
-  background: url('/destination/background-destination-desktop.jpg') no-repeat;
+  background: url("/destination/background-destination-desktop.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   background-color: #000;

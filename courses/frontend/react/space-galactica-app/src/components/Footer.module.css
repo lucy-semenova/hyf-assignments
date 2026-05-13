@@ -16,7 +16,9 @@
   padding: var(--spacing-08) 0;
 }
 
-.footer p, .footer a, .footer li {
+.footer p,
+.footer a,
+.footer li {
   color: #000;
   font-size: medium;
   font-weight: 200;
@@ -33,13 +35,21 @@
 }
 
 .footerLinks {
-  gap: var(--spacing-20);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-08);
 }
 
 .footerList {
   list-style-type: none;
+  display: flex;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
 }
 
-.footerList li {
-  padding-block: var(--spacing-04);
+.socialMediaIcon {
+  width: 20px;
+  height: 20px;
 }

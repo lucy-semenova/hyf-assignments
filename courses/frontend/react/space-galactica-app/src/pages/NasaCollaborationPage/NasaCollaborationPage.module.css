@@ -4,9 +4,96 @@
   height: 100vh;
 }
 
+.section {
+  padding: var(--spacing-48) var(--spacing-24) var(--spacing-64);
+  background-color: var(--primary-background-color);
+  color: var(--primary-text-color);
+}
 
-.nasaPicOfTheDayImg {
-  width: auto;
-  height: 400px;
+.title {
+  margin-bottom: var(--spacing-24);
+  font-size: var(--font-size-jumbo);
+  line-height: 1.05;
+  color: var(--primary-text-color);
+}
 
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-16);
+}
+
+.card {
+  background-color: var(--card-bg-color);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-32);
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.cardTitle {
+  margin: var(--spacing-16) 0;
+  font-size: var(--font-size-xl);
+}
+
+.description {
+  max-width: 48rem;
+  margin: 0 auto var(--spacing-24);
+  font-size: var(--font-size-md);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: justify;
+}
+
+.nasaImage {
+  width: 100%;
+  max-width: 320px;
+  height: 260px;
+  object-fit: cover;
+  margin: 0 auto var(--spacing-16);
+  display: block;
+  border-radius: var(--border-radius);
+}
+
+.roverGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-16);
+}
+
+.roverCard {
+  padding: var(--spacing-16);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--border-radius);
+  background-color: rgba(255, 255, 255, 0.06);
+  text-align: center;
+}
+.header {
+  margin-bottom: var(--spacing-40);
+}
+
+.number {
+  margin: 0 0 var(--spacing-16);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.date {
+  margin: var(--spacing-08) 0;
+  font-size: var(--font-size-sm);
+}
+
+.mediaTitle {
+  margin: var(--spacing-08) 0 var(--spacing-16);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .roverGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
