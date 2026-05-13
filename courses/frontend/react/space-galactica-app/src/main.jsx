@@ -7,7 +7,6 @@ import DestinationPage from "./pages/DestinationPage/DestinationPage.jsx";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage.jsx";
 import NasaCollaboration from "./pages/NasaCollaborationPage/NasaCollaborationPage.jsx";
 
-
 import "./main.css";
 import { WishlistProvider } from "./components/context/WishlistContext.jsx";
 
@@ -49,10 +48,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-
-      <WishlistProvider>
-       
+    <WishlistProvider>
       <RouterProvider router={router} />
-       </WishlistProvider>
+    </WishlistProvider>
   </React.StrictMode>,
 );

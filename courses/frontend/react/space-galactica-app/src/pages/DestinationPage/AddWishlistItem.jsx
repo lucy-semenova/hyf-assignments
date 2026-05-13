@@ -23,7 +23,7 @@ export const AddWishlistItem = ({ onAddWishlistItem }) => {
         value={wishlistItemName}
         onChange={(event) => setWishlistItemName(event.target.value)}
       />
-      
+
       <select
         id="customWishlistThumbnail"
         value={thumbnail}
