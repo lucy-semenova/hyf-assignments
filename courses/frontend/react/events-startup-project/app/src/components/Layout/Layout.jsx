@@ -1,5 +1,6 @@
 import "./Layout.css";
 import { useAuth } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function Layout({ children, onLoginClick }) {
   const { user, logout } = useAuth();
@@ -9,9 +10,9 @@ export default function Layout({ children, onLoginClick }) {
       <header>
         <h1 className="logo">Event Startup</h1>
         <nav>
-          <span>Home</span>
-          <span>Events</span>
-          <span>Cart</span>
+          <Link to="/">Home</Link>
+<Link to="/events">Events</Link>
+<Link to="/cart">Cart</Link>
           {user ? (
             <button onClick={logout}>Sign out</button>
           ) : (
