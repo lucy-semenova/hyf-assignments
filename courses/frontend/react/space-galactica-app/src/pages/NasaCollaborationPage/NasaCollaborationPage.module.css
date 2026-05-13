@@ -5,14 +5,16 @@
 }
 
 .section {
-  padding: var(--spacing-24);
-  background-color: rgba(41, 49, 61, 0.9);
+   padding: var(--spacing-48) var(--spacing-24) var(--spacing-64);
+   background-color: var(--primary-background-color);
   color: var(--primary-text-color);
 }
 
 .title {
-  margin-bottom: var(--spacing-24);
-  font-size: var(--font-size-xxl);
+ margin-bottom: var(--spacing-24);
+  font-size: var(--font-size-jumbo);
+  line-height: 1.05;
+  color: var(--primary-text-color);
 }
 
 .grid {
@@ -22,10 +24,12 @@
 }
 
 .card {
-  background-color: #000;
-  border-radius: 12px;
+  background-color:  var(--card-bg-color);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--border-radius);
   padding: var(--spacing-32);
   text-align: center;
+   backdrop-filter: blur(10px);
 }
 
 .cardTitle {
@@ -34,9 +38,12 @@
 }
 
 .description {
-  max-width: 42rem;
+   max-width: 48rem;
   margin: 0 auto var(--spacing-24);
-  line-height: 1.6;
+  font-size: var(--font-size-md);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: left;
 }
 
 .nasaImage {
@@ -46,6 +53,7 @@
   object-fit: cover;
   margin: 0 auto var(--spacing-16);
   display: block;
+    border-radius: var(--border-radius);
 }
 
 .roverGrid {
@@ -55,6 +63,10 @@
 }
 
 .roverCard {
+   padding: var(--spacing-16);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+border-radius: var(--border-radius);
+  background-color: rgba(255, 255, 255, 0.06);
   text-align: center;
 }
 .header {
@@ -68,12 +80,12 @@
   line-height: 1;
 }
 .date {
-  margin: var(--spacing-8) 0;
+  margin: var(--spacing-08) 0;
   font-size: var(--font-size-sm);
 }
 
 .mediaTitle {
-  margin: var(--spacing-8) 0 var(--spacing-16);
+  margin: var(--spacing-08) 0 var(--spacing-16);
 }
 
 @media (min-width: 768px) {

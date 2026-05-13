@@ -7,8 +7,8 @@
 
 .addWishlistItem,
 .currentWishlist {
-  background-color: #000;
-  border-radius: 12px;
+  background-color: var(--primary-background-color);
+  border-radius: var(--border-radius);
   padding: var(--spacing-24);
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
@@ -37,8 +37,11 @@
   height: 42px;
   margin-bottom: var(--spacing-20);
   padding: 0 var(--spacing-12);
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--border-radius);
+  color: var(--primary-text-color);
 }
-
 .addWishlistItem button {
   width: 100%;
 }
@@ -96,7 +99,10 @@
   gap: var(--spacing-12);
   min-width: 0;
 }
-
+.addWishlistItem select option {
+  background-color: var(--primary-background-color);
+  color: var(--primary-text-color);
+}
 .wishlistItemName {
   margin: 0;
   font-size: var(--font-size-lg);
