@@ -30,7 +30,17 @@ export default function Layout({ children, onLoginClick }) {
             <span>Cart</span>
             <span className="cartCount">{cartCount}</span>
           </Link>
+          {user && (
+            <>
+              <Link to="/account" className="navButton">
+                Account
+              </Link>
 
+              <Link to="/orders" className="navButton">
+                Orders
+              </Link>
+            </>
+          )}
           {user ? (
             <button className="navButton" onClick={handleLogout}>
               <User size={24} />
