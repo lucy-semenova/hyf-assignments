@@ -13,6 +13,7 @@ function App() {
       <Layout onLoginClick={() => setShowLogin(true)}>
         <Routes>
           <Route path="/" element={<EventSection />} />
+          <Route path="/events" element={<EventSection />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>
       </Layout>
