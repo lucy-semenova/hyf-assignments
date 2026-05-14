@@ -50,13 +50,15 @@ function RegisterForm() {
       {success && <p className="successMessage">{success}</p>}
 
       <input
+        id="registerEmail"
         type="email"
         placeholder="Enter Email"
         value={email}
         onChange={(event) => setEmail(event.target.value)}
       />
 
-      <input 
+      <input
+        id="registerPassword"
         type="password"
         placeholder="Enter Password"
         value={password}
