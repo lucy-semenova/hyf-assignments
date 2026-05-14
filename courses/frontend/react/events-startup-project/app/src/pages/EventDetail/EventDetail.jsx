@@ -38,7 +38,15 @@ export default function EventDetail({ eventId, onClose }) {
   }, [eventId]);
 
   function handleQuantityChange(event) {
-    setQuantity(Number(event.target.value));
+    const value = Number(event.target.value);
+
+    if (value < 1) {
+      setQuantity(1);
+    } else if (value > event.ticketsAvailable) {
+      setQuantity(event.ticketsAvailable);
+    } else {
+      setQuantity(value);
+    }
   }
   function getPriceMessage() {
     return event.price === 0 ? "Free" : `${event.price} DKK`;

@@ -17,15 +17,18 @@ function EventList() {
 
   useEffect(() => {
     async function fetchEvents() {
+      const searchQuery = encodeURIComponent(searchTerm);
       const categoryQuery =
-        selectedCategory === "All" ? "" : `&category=${selectedCategory}`;
+        selectedCategory === "All"
+          ? ""
+          : `&category=${encodeURIComponent(selectedCategory)}`;
 
       try {
         setLoading(true);
         setError("");
 
         const response = await fetch(
-          api(`/events?q=${searchTerm}${categoryQuery}&page=${page}&limit=4`),
+          api(`/events?q=${searchQuery}${categoryQuery}&page=${page}&limit=4`),
         );
 
         if (!response.ok) {
@@ -74,7 +77,10 @@ function EventList() {
         }}
       />
       {events.length === 0 ? (
-        <p className="noEvents">No events available.</p>
+        <p className="noEvents">
+          {" "}
+          No events match your search or selected category.
+        </p>
       ) : (
         <>
           {selectedEventId && (
