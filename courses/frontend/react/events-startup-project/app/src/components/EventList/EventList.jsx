@@ -13,15 +13,19 @@ function EventList() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [selectedEventId, setSelectedEventId] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {
     async function fetchEvents() {
+      const categoryQuery =
+        selectedCategory === "All" ? "" : `&category=${selectedCategory}`;
+
       try {
         setLoading(true);
         setError("");
 
         const response = await fetch(
-          api(`/events?q=${searchTerm}&page=${page}&limit=4`),
+          api(`/events?q=${searchTerm}${categoryQuery}&page=${page}&limit=4`),
         );
 
         if (!response.ok) {
@@ -37,12 +41,13 @@ function EventList() {
         setLoading(false);
       }
     }
+
     const timeoutId = setTimeout(() => {
       fetchEvents();
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [searchTerm, page]);
+  }, [searchTerm, selectedCategory, page]);
 
   if (loading) {
     return <p>Loading events...</p>;
@@ -60,6 +65,11 @@ function EventList() {
         searchQuery={searchTerm}
         setSearchQuery={(value) => {
           setSearchTerm(value);
+          setPage(1);
+        }}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={(value) => {
+          setSelectedCategory(value);
           setPage(1);
         }}
       />

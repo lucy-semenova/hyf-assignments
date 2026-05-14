@@ -37,8 +37,8 @@ export default function EventDetail({ eventId, onClose }) {
     }
   }, [eventId]);
 
-  function handleQuantityChange(e) {
-    setQuantity(Number(e.target.value));
+  function handleQuantityChange(event) {
+    setQuantity(Number(event.target.value));
   }
   function getPriceMessage() {
     return event.price === 0 ? "Free" : `${event.price} DKK`;
