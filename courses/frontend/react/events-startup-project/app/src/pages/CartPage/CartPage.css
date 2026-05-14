@@ -1,0 +1,21 @@
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  color: #1f82c7;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.backLink:hover {
+  background: #fff7f2;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}

@@ -1,45 +1,46 @@
 import "./Layout.css";
-import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import { ShoppingCart, User } from "lucide-react";
 
 export default function Layout({ children, onLoginClick }) {
   const { user, logout } = useAuth();
   const { cartCount, clearCart } = useCart();
-  const [showMenu, setShowMenu] = useState(false);
 
-  function handleLogout() { 
+  function handleLogout() {
     logout();
     clearCart();
-    setShowMenu(false);
   }
 
   return (
     <div>
-      <header>
-        <h1 className="logo">Event Startup</h1>
+      <header className="header">
+        <Link to="/" className="logo">
+          <img src="/logo.png" alt="Event Startup logo" className="logoImage" />
+        </Link>
 
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/events">Events</Link>
-          <Link to="/cart">Cart ({cartCount})</Link>
+        <Link to="/" className="logoText">
+          EVENT STARTUP
+        </Link>
+
+        <nav className="navbar">
+          <Link to="/cart" className="navButton">
+            <ShoppingCart size={24} />
+            <span>Cart</span>
+            <span className="cartCount">{cartCount}</span>
+          </Link>
 
           {user ? (
-            <div className="accountMenu">
-              <button onClick={() => setShowMenu(!showMenu)}>Account ▼</button>
-
-              {showMenu && (
-                <div className="dropdownMenu">
-                   <p>{user.email}</p>
-                  <Link to="/account">Profile</Link>
-                  <Link to="/orders">Orders</Link>
-                  <button onClick={handleLogout}>Sign out</button>
-                </div>
-              )}
-            </div>
+            <button className="navButton" onClick={handleLogout}>
+              <User size={24} />
+              <span>Sign out</span>
+            </button>
           ) : (
-            <button onClick={onLoginClick}>Login</button>
+            <button className="navButton" onClick={onLoginClick}>
+              <User size={24} />
+              <span>Login</span>
+            </button>
           )}
         </nav>
       </header>

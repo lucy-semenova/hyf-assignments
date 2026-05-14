@@ -1,5 +1,7 @@
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
+import "./CartPage.css";
 function CartPage() {
   const { cartItems, removeFromCart, updateQuantity, clearCart, cartTotal } =
     useCart();
@@ -8,6 +10,9 @@ function CartPage() {
   if (cartItems.length === 0) {
     return (
       <section>
+        <Link to="/" className="backLink">
+          ← Back to events
+        </Link>
         <h1>Your Cart</h1>
         <p>Your cart is empty.</p>
       </section>
