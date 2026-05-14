@@ -1,29 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
-import Layout from "./components/Layout/Layout";
-import EventSection from "./components/EventSection/EventSection";
-import Login from "./components/Login/Login";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
 import "./main.css";
+import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
-
-
-function App() {
-  const [showLogin, setShowLogin] = useState(false);
-
-  return (
-    <Layout onLoginClick={() => setShowLogin(true)}>
-      <EventSection />
-
-      {showLogin && <Login onClose={() => setShowLogin(false)} />}
-    </Layout>
-  );
-}
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-    <App/>
-    </AuthProvider>
+    <BrowserRouter>
+      <AuthProvider>
+          <CartProvider>
+          <App />
+          </CartProvider>
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>,
 );
 

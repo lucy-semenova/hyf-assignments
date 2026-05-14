@@ -1,4 +1,5 @@
 import "./EventCard.css";
+import { CalendarDays, MapPin, Ticket, Users, FileText } from "lucide-react";
 
 function EventCard({
   title,
@@ -25,16 +26,31 @@ function EventCard({
   return (
     <li className="eventCard">
       <h2 className="eventTitle">{title}</h2>
-      <p className="eventDate">
-        {date} at {time}
-      </p>
-      <p className="eventVenue">
-        {venue}, {city}
-      </p>
       <p className="eventType">{category}</p>
-      <p className="eventPrice">{getPriceMessage()}</p>
-
-      <p className="eventTicketsLeft">{getAvailabilityMessage()}</p>
+      <div className="eventInfo">
+        <FileText size={20} />
+        <p className="eventDescription">{description}</p>
+      </div>
+      <div className="eventInfo">
+        <CalendarDays size={20} />
+        <p className="eventDate">
+          {date} at {time}
+        </p>
+      </div>
+      <div className="eventInfo">
+        <MapPin size={20} />
+        <p className="eventVenue">
+          {venue}, {city}
+        </p>
+      </div>
+      <div className="eventInfo">
+        <Ticket size={20} />
+        <p className="eventPrice">{getPriceMessage()}</p>
+      </div>
+      <div className="eventInfo">
+        <Users size={20} />
+        <p className="eventTicketsLeft">{getAvailabilityMessage()}</p>
+      </div>
       <button
         className="buyTicketButton"
         disabled={ticketsAvailable === 0}

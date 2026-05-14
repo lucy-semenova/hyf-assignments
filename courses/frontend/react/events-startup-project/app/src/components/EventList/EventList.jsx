@@ -1,8 +1,9 @@
 import EventCard from "../EventCard/EventCard";
 import EventSearch from "../EventSearch/EventSearch";
-import EventDetail from "../EventDetail/EventDetail";
+import EventDetail from "../../pages/EventDetail/EventDetail";
 import "./EventList.css";
 import { useEffect, useState } from "react";
+import api from "../../services/api";
 
 function EventList() {
   const [events, setEvents] = useState([]);
@@ -12,36 +13,45 @@ function EventList() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [selectedEventId, setSelectedEventId] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {
-  async function fetchEvents() {
-    try {
-      setLoading(true);
-      setError("");
+    async function fetchEvents() {
+      const searchQuery = encodeURIComponent(searchTerm);
+      const categoryQuery =
+        selectedCategory === "All"
+          ? ""
+          : `&category=${encodeURIComponent(selectedCategory)}`;
 
-      const response = await fetch(`http://localhost:3001/api/events?q=${searchTerm}&page=${page}&limit=4`);
+      try {
+        setLoading(true);
+        setError("");
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch events");
+        const response = await fetch(
+          api(`/events?q=${searchQuery}${categoryQuery}&page=${page}&limit=4`),
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch events");
+        }
+
+        const data = await response.json();
+        setEvents(data.events);
+        setTotalPages(data.totalPages);
+      } catch (err) {
+        setError("Could not load events");
+      } finally {
+        setLoading(false);
       }
-
-      const data = await response.json();
-     setEvents(data.events);
-setTotalPages(data.totalPages);
-    } catch (err) {
-      setError("Could not load events");
-    } finally {
-      setLoading(false);
     }
-  }
-  const timeoutId = setTimeout(() => {
-    fetchEvents();
-  }, 300);
 
-  return () => clearTimeout(timeoutId);
-  }, [searchTerm, page]);
-  
-  
+    const timeoutId = setTimeout(() => {
+      fetchEvents();
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchTerm, selectedCategory, page]);
+
   if (loading) {
     return <p>Loading events...</p>;
   }
@@ -54,20 +64,31 @@ setTotalPages(data.totalPages);
     <section className="event-list">
       <h1>Upcoming Events</h1>
 
- <EventSearch
-  searchQuery={searchTerm}
-  setSearchQuery={(value) => {
-    setSearchTerm(value);
-    setPage(1);
-  }}
+      <EventSearch
+        searchQuery={searchTerm}
+        setSearchQuery={(value) => {
+          setSearchTerm(value);
+          setPage(1);
+        }}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={(value) => {
+          setSelectedCategory(value);
+          setPage(1);
+        }}
       />
       {events.length === 0 ? (
-        <p className="noEvents">No events available.</p>
+        <p className="noEvents">
+          {" "}
+          No events match your search or selected category.
+        </p>
       ) : (
-          <>
-             {selectedEventId && (
-    <EventDetail eventId={selectedEventId} onClose={() => setSelectedEventId(null)} />
-  )}
+        <>
+          {selectedEventId && (
+            <EventDetail
+              eventId={selectedEventId}
+              onClose={() => setSelectedEventId(null)}
+            />
+          )}
           <ul className="event-grid">
             {events.map((event) => (
               <EventCard
@@ -82,10 +103,8 @@ setTotalPages(data.totalPages);
                 price={event.price}
                 ticketsAvailable={event.ticketsAvailable}
                 onClick={() => setSelectedEventId(event.id)}
-                
               />
             ))}
-              
           </ul>
           {totalPages > 1 && (
             <div className="pagination">
@@ -93,15 +112,18 @@ setTotalPages(data.totalPages);
                 Previous
               </button>
 
+              <span>
+                Page {page} of {totalPages}
+              </span>
 
-              <span>Page {page} of {totalPages}</span>
-
-              <button onClick={() => setPage(page + 1)} disabled={page === totalPages}>
+              <button
+                onClick={() => setPage(page + 1)}
+                disabled={page === totalPages}
+              >
                 Next
               </button>
             </div>
-            )}
-           
+          )}
         </>
       )}
     </section>

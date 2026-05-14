@@ -1,22 +1,57 @@
 import "./Layout.css";
 import { useAuth } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
+import { ShoppingCart, User } from "lucide-react";
 
 export default function Layout({ children, onLoginClick }) {
   const { user, logout } = useAuth();
+  const { cartCount, clearCart } = useCart();
+
+  function handleLogout() {
+    logout();
+    clearCart();
+  }
 
   return (
     <div>
-      <header>
-        <h1 className="logo">Event Startup</h1>
-        <nav>
-          <span>Home</span>
-          <span>Events</span>
-          <span>Cart</span>
-         {user ? (
-  <span onClick={logout}>Sign out</span>
-) : (
-  <span onClick={onLoginClick}>Login</span>
-)}
+      <header className="header">
+        <Link to="/" className="logo">
+          <img src="/logo.png" alt="Event Startup logo" className="logoImage" />
+        </Link>
+
+        <Link to="/" className="logoText">
+          EVENT STARTUP
+        </Link>
+
+        <nav className="navbar">
+          <Link to="/cart" className="navButton">
+            <ShoppingCart size={24} />
+            <span>Cart</span>
+            <span className="cartCount">{cartCount}</span>
+          </Link>
+          {user && (
+            <>
+              <Link to="/account" className="navButton">
+                Account
+              </Link>
+
+              <Link to="/orders" className="navButton">
+                Orders
+              </Link>
+            </>
+          )}
+          {user ? (
+            <button className="navButton" onClick={handleLogout}>
+              <User size={24} />
+              <span>Sign out</span>
+            </button>
+          ) : (
+            <button className="navButton" onClick={onLoginClick}>
+              <User size={24} />
+              <span>Login</span>
+            </button>
+          )}
         </nav>
       </header>
 
@@ -28,64 +63,3 @@ export default function Layout({ children, onLoginClick }) {
     </div>
   );
 }
-
-/*
-import { Link, Outlet } from "react-router-dom";
-import hyfLogo from "../../assets/hyf.svg";
-import { useAuth } from "../../context/AuthContext.jsx";
-
-export default function Layout() {
-  const { user, logout } = useAuth();
-
-  return (
-    <div>
-      <header>
-        <nav
-          style={{
-            width: "100%",
-            display: "flex",
-            gap: "20px",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "10px 20px",
-          }}
-        >
-          <a
-            href="https://www.hackyourfuture.dk/"
-            target="_blank"
-            className="link"
-          >
-            <img
-              src={hyfLogo}
-              alt="HackYourFuture logo"
-              className="logo"
-              width={200}
-              style={{ padding: "20px" }}
-            />
-          </a>
-          {/* Navigation links go here — e.g. link to event list, cart, login */
-/*<Link to="/events" className="link">
-            Events
-          </Link>
-
-          {user && (
-            <>
-              <span>{user.email}</span>
-              <button onClick={logout}>Sign out</button>
-            </>
-          )}
-
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-        </nav>
-      </header>
-
-      <main>
-        <Outlet />
-      </main>
-
-      <footer>{/* Footer content goes here */
-/*</footer >
-    </div>
-  );
-}*/
