@@ -33,17 +33,17 @@ export function CartProvider({ children }) {
   }
 
   function updateQuantity(eventId, quantity) {
+    const safeQuantity = Math.max(1, quantity);
     setCartItems((currentItems) =>
       currentItems.map((item) =>
-        item.id === eventId ? { ...item, quantity } : item,
+        item.id === eventId ? { ...item, quantity: safeQuantity } : item,
       ),
     );
   }
 
-    function clearCart() {
-        setCartItems([]);
-        localStorage.removeItem("cartItems");
-   
+  function clearCart() {
+    setCartItems([]);
+    localStorage.removeItem("cartItems");
   }
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
